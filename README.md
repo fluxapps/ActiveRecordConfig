@@ -57,9 +57,26 @@ And now add some configs:
 	/**
 	 * @param string $some
 	 */
-	public static function setInfo($some) {
+	public static function setSome($some) {
 		self::setStringValue(self::KEY_SOME, $some);
 	}
 ```
 
 You can now access your config like `ilXConfig::getSome()` and set it like `ilXConfig::setSome("some")`.
+
+Here an example update step if your config class before use one row with columns:
+```php
+<#2>
+<?php
+ilXConfig::updateDB();
+
+if (\srag\DIC\DICCache::dic()->database()->tableExists(ilXConfigOld::TABLE_NAME)) {
+	$config = ilXConfigOld::getConfig();
+
+	ilXConfig::setSome($config->getSome());
+	///...
+
+	\srag\DIC\DICCache::dic()->database()->dropTable(ilXConfigOld::TABLE_NAME);
+}
+?>
+```
