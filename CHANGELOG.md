@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.3.0]
+- Supports default values for strings
+
 ## [0.2.0]
 - Rename `key` column to `name` because bug in ILIAS ActiveRecord (Not escape Keys in `WHERE`)
 

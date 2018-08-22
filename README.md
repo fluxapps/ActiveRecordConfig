@@ -16,7 +16,7 @@ git clone git@git.studer-raimann.ch:ILIAS/Plugins/ActiveRecordConfig.git ActiveR
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/activerecordconfig": "^0.2.0"
+  "srag/activerecordconfig": "^0.3.0"
 },
 ```
 And run a `composer install`.
@@ -47,11 +47,13 @@ And now add some configs:
 	//...
 	const KEY_SOME = "some";
 	//...
+	const DEFAULT_SOME = "some";
+	//...
 	/**
 	 * @return string
 	 */
 	public static function getSome() {
-		return self::getStringValue(self::KEY_SOME);
+		return self::getStringValue(self::KEY_SOME, self::DEFAULT_SOME);
 	}
 
 	/**

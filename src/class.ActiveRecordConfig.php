@@ -142,11 +142,18 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 
 	/**
 	 * @param string $name
+	 * @param string $default_value
 	 *
 	 * @return string
 	 */
-	public static final function getStringValue($name) {
-		return strval(self::getXValue($name));
+	public static final function getStringValue($name, $default_value = "") {
+		$value = strval(self::getXValue($name));
+
+		if (empty($default_value)) {
+			$value = $default_value;
+		}
+
+		return $value;
 	}
 
 
