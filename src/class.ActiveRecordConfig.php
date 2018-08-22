@@ -42,24 +42,24 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 * @param bool   $store_new
 	 *
 	 * @return static
 	 */
-	protected static final function getConfig($key, $store_new = true) {
+	protected static final function getConfig($name, $store_new = true) {
 		/**
 		 * @var static $config
 		 */
 
 		$config = self::where([
-			"key" => $key
+			"name" => $name
 		])->first();
 
 		if ($config === NULL) {
 			$config = new static();
 
-			$config->setKey($key);
+			$config->setName($name);
 
 			if ($store_new) {
 				$config->store();
@@ -71,23 +71,23 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 *
 	 * @return mixed
 	 */
-	protected static final function getXValue($key) {
-		$config = self::getConfig($key);
+	protected static final function getXValue($name) {
+		$config = self::getConfig($name);
 
 		return $config->getValue();
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 * @param mixed  $value
 	 */
-	protected static final function setXValue($key, $value) {
-		$config = self::getConfig($key, false);
+	protected static final function setXValue($name, $value) {
+		$config = self::getConfig($name, false);
 
 		$config->setValue($value);
 
@@ -100,7 +100,7 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 */
 	public static final function getAll() {
 		return array_reduce(self::get(), function (array $configs, self $config) {
-			$configs[$config->getKey()] = $config->getValue();
+			$configs[$config->getName()] = $config->getValue();
 
 			return $configs;
 		}, []);
@@ -110,7 +110,7 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	/**
 	 * @return string[]
 	 */
-	public static final function getKeys() {
+	public static final function getNames() {
 		return array_keys(self::getAll());
 	}
 
@@ -124,126 +124,118 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 			self::truncateDB();
 		}
 
-		foreach ($configs as $key => $value) {
-			self::setXValue($key, $value);
+		foreach ($configs as $name => $value) {
+			self::setXValue($name, $value);
 		}
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 */
-	public static final function deleteConfig($key) {
-		/**
-		 * @var self $config
-		 */
+	public static final function deleteConfig($name) {
+		$config = self::getConfig($name, false);
 
-		$config = self::where([
-			"key" => $key
-		])->first();
-
-		if ($config !== NULL) {
-			$config->delete();
-		}
+		$config->delete();
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 *
 	 * @return string
 	 */
-	public static final function getStringValue($key) {
-		return strval(self::getXValue($key));
+	public static final function getStringValue($name) {
+		return strval(self::getXValue($name));
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 * @param string $value
 	 */
-	public static final function setStringValue($key, $value) {
-		self::setXValue($key, strval($value));
+	public static final function setStringValue($name, $value) {
+		self::setXValue($name, strval($value));
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 *
 	 * @return int
 	 */
-	public static final function getIntegerValue($key) {
-		return intval(self::getStringValue($key));
+	public static final function getIntegerValue($name) {
+		return intval(self::getStringValue($name));
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 * @param int    $value
 	 */
-	public static final function setIntegerValue($key, $value) {
-		self::setStringValue($key, intval($value));
+	public static final function setIntegerValue($name, $value) {
+		self::setStringValue($name, intval($value));
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 *
 	 * @return double
 	 */
-	public static final function getDoubleValue($key) {
-		return doubleval(self::getStringValue($key));
+	public static final function getDoubleValue($name) {
+		return doubleval(self::getStringValue($name));
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 * @param double $value
 	 */
-	public static final function setDoubleValue($key, $value) {
-		self::setStringValue($key, doubleval($value));
+	public static final function setDoubleValue($name, $value) {
+		self::setStringValue($name, doubleval($value));
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 *
 	 * @return bool
 	 */
-	public static final function getBooleanValue($key) {
-		return boolval(self::getStringValue($key));
+	public static final function getBooleanValue($name) {
+		return boolval(self::getStringValue($name));
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 * @param bool   $value
 	 */
-	public static final function setBooleanValue($key, $value) {
-		self::setStringValue($key, boolval($value));
+	public static final function setBooleanValue($name, $value) {
+		self::setStringValue($name, boolval($value));
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 *
 	 * @return int
 	 */
-	public static final function getDateValue($key) {
-		$date_time = new DateTime(self::getStringValue($key));
+	public static final function getDateValue($name) {
+		$date_time = new DateTime(self::getStringValue($name));
 
 		return $date_time->getTimestamp();
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 * @param int    $timestamp
 	 */
-	public static final function setDateValue($key, $timestamp) {
+	public static final function setDateValue($name, $timestamp) {
 		if ($timestamp === NULL) {
 			// Fix `@null`
-			self::setNullValue($key);
+			self::setNullValue($name);
 
 			return;
 		}
@@ -252,45 +244,45 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 
 		$formated = $date_time->format("Y-m-d H:i:s");
 
-		self::setStringValue($key, $formated);
+		self::setStringValue($name, $formated);
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 * @param bool   $assoc
 	 *
 	 * @return mixed
 	 */
-	public static final function getJsonValue($key, $assoc = false) {
-		return json_decode(self::getStringValue($key), $assoc);
+	public static final function getJsonValue($name, $assoc = false) {
+		return json_decode(self::getStringValue($name), $assoc);
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 * @param mixed  $value
 	 */
-	public static final function setJsonValue($key, $value) {
-		self::setStringValue($key, json_encode($value));
+	public static final function setJsonValue($name, $value) {
+		self::setStringValue($name, json_encode($value));
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 *
 	 * @return bool
 	 */
-	public static final function isNullValue($key) {
-		return (self::getXValue($key) === NULL);
+	public static final function isNullValue($name) {
+		return (self::getXValue($name) === NULL);
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 */
-	public static final function setNullValue($key) {
-		self::setXValue($key, NULL);
+	public static final function setNullValue($name) {
+		self::setXValue($name, NULL);
 	}
 
 
@@ -303,7 +295,7 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 * @con_is_notnull  true
 	 * @con_is_primary  true
 	 */
-	protected $key = NULL;
+	protected $name = NULL;
 	/**
 	 * @var string
 	 *
@@ -317,11 +309,11 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	/**
 	 * ActiveRecordConfig constructor
 	 *
-	 * @param string|null      $primary_key_value
+	 * @param string|null      $primary_name_value
 	 * @param arConnector|null $connector
 	 */
-	public final function __construct($primary_key_value = NULL, arConnector $connector = NULL) {
-		parent::__construct($primary_key_value, $connector);
+	public final function __construct($primary_name_value = NULL, arConnector $connector = NULL) {
+		parent::__construct($primary_name_value, $connector);
 	}
 
 
@@ -357,16 +349,16 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	protected final function getKey() {
-		return $this->key;
+	protected final function getName() {
+		return $this->name;
 	}
 
 
 	/**
-	 * @param string $key
+	 * @param string $name
 	 */
-	protected final function setKey($key) {
-		$this->key = $key;
+	protected final function setName($name) {
+		$this->name = $name;
 	}
 
 
