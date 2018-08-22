@@ -22,6 +22,9 @@
   "support": {
     "email": "support@studer-raimann.ch"
   },
+  "require": {
+    "srag/dic": "^0.2.1"
+  },
   "autoload": {
     "psr-4": {
       "srag\\ActiveRecordConfig\\": "src/"
