@@ -16,7 +16,7 @@ git clone git@git.studer-raimann.ch:ILIAS/Plugins/ActiveRecordConfig.git ActiveR
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/activerecordconfig": "^0.4.0"
+  "srag/activerecordconfig": "^0.4.1"
 },
 ```
 And run a `composer install`.
@@ -80,7 +80,8 @@ It exists the follow datatypes:
 | json      | * getJsonValue<br>* setJsonValue           |
 | null      | * isNullValue<br>* setNullValue            |
 
-Here an example update step if your config class before use one row with columns:
+### Update steps
+Here some example update steps that can help you to migrate your data:
 ```php
 <#2>
 <?php
@@ -91,6 +92,24 @@ if (\srag\DIC\DICCache::dic()->database()->tableExists(ilXConfigOld::TABLE_NAME)
 
 	ilXConfig::setSome($config->getSome());
 	///...
+
+	\srag\DIC\DICCache::dic()->database()->dropTable(ilXConfigOld::TABLE_NAME);
+}
+?>
+```
+or
+```php
+<#2>
+<?php
+ilXConfig::updateDB();
+
+if (\srag\DIC\DICCache::dic()->database()->tableExists(ilXConfigOld::TABLE_NAME)) {
+	foreach (ilXConfigOld::get() as $config) {
+		/**
+		 * @var ilXConfigOld $config
+		 */
+		ilXConfig::setStringValue($config->getName(), $config->getValue());
+	}
 
 	\srag\DIC\DICCache::dic()->database()->dropTable(ilXConfigOld::TABLE_NAME);
 }
