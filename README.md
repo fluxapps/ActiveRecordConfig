@@ -16,7 +16,7 @@ git clone git@git.studer-raimann.ch:ILIAS/Plugins/ActiveRecordConfig.git ActiveR
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/activerecordconfig": "^0.3.0"
+  "srag/activerecordconfig": "^0.4.0"
 },
 ```
 And run a `composer install`.
@@ -65,6 +65,20 @@ And now add some configs:
 ```
 
 You can now access your config like `ilXConfig::getSome()` and set it like `ilXConfig::setSome("some")`.
+
+Internally all values are stored as strings and will casted with appropriates methods
+
+It exists the follow datatypes:
+
+| Datatype  | Methods                                    |
+| :-------- | :----------------------------------------- |
+| string    | * getStringValue<br>* setStringValue       |
+| int       | * getIntegerValue<br>* setIntegerValue     |
+| double    | * getDoubleValue<br>* setDoubleValue       |
+| bool      | * getBooleanValue<br>* setBooleanValue     |
+| timestamp | * getTimestampValue<br>* setTimestampValue |
+| json      | * getJsonValue<br>* setJsonValue           |
+| null      | * isNullValue<br>* setNullValue            |
 
 Here an example update step if your config class before use one row with columns:
 ```php

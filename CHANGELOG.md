@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.0]
+- Supports default values for other types
+- Rename `Date` to `Timestamp`
+- Added datatypes to README.md
+
 ## [0.3.0]
 - Supports default values for strings
 

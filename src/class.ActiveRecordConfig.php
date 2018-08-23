@@ -21,6 +21,12 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 * @abstract
 	 */
 	const TABLE_NAME = "";
+	/**
+	 * @var string
+	 *
+	 * @access private
+	 */
+	const SQL_DATE_FORMAT = "Y-m-d H:i:s";
 
 
 	/**
@@ -71,14 +77,21 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 
 
 	/**
-	 * @param string $name
+	 * @param string     $name
+	 * @param mixed|null $default_value
 	 *
 	 * @return mixed
 	 */
-	protected static final function getXValue($name) {
+	protected static final function getXValue($name, $default_value = NULL) {
 		$config = self::getConfig($name);
 
-		return $config->getValue();
+		$value = $config->getValue();
+
+		if ($value === NULL) {
+			$value = $default_value;
+		}
+
+		return $value;
 	}
 
 
@@ -147,13 +160,7 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 * @return string
 	 */
 	public static final function getStringValue($name, $default_value = "") {
-		$value = strval(self::getXValue($name));
-
-		if (empty($default_value)) {
-			$value = $default_value;
-		}
-
-		return $value;
+		return strval(self::getXValue($name, $default_value));
 	}
 
 
@@ -168,11 +175,12 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 
 	/**
 	 * @param string $name
+	 * @param int    $default_value
 	 *
 	 * @return int
 	 */
-	public static final function getIntegerValue($name) {
-		return intval(self::getStringValue($name));
+	public static final function getIntegerValue($name, $default_value = 0) {
+		return intval(self::getXValue($name, $default_value));
 	}
 
 
@@ -181,17 +189,18 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 * @param int    $value
 	 */
 	public static final function setIntegerValue($name, $value) {
-		self::setStringValue($name, intval($value));
+		self::setXValue($name, intval($value));
 	}
 
 
 	/**
 	 * @param string $name
+	 * @param double $default_value
 	 *
 	 * @return double
 	 */
-	public static final function getDoubleValue($name) {
-		return doubleval(self::getStringValue($name));
+	public static final function getDoubleValue($name, $default_value = 0.0) {
+		return doubleval(self::getXValue($name, $default_value));
 	}
 
 
@@ -200,17 +209,18 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 * @param double $value
 	 */
 	public static final function setDoubleValue($name, $value) {
-		self::setStringValue($name, doubleval($value));
+		self::setXValue($name, doubleval($value));
 	}
 
 
 	/**
 	 * @param string $name
+	 * @param bool   $default_value
 	 *
 	 * @return bool
 	 */
-	public static final function getBooleanValue($name) {
-		return boolval(self::getStringValue($name));
+	public static final function getBooleanValue($name, $default_value = false) {
+		return boolval(self::getXValue($name, $default_value));
 	}
 
 
@@ -219,17 +229,24 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 * @param bool   $value
 	 */
 	public static final function setBooleanValue($name, $value) {
-		self::setStringValue($name, boolval($value));
+		self::setXValue($name, boolval($value));
 	}
 
 
 	/**
 	 * @param string $name
+	 * @param int    $default_value
 	 *
 	 * @return int
 	 */
-	public static final function getDateValue($name) {
-		$date_time = new DateTime(self::getStringValue($name));
+	public static final function getTimestampValue($name, $default_value = 0) {
+		$value = self::getXValue($name);
+
+		if ($value !== NULL) {
+			$date_time = new DateTime($value);
+		} else {
+			$date_time = new DateTime("@" . $default_value);
+		}
 
 		return $date_time->getTimestamp();
 	}
@@ -237,32 +254,31 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 
 	/**
 	 * @param string $name
-	 * @param int    $timestamp
+	 * @param int    $value
 	 */
-	public static final function setDateValue($name, $timestamp) {
-		if ($timestamp === NULL) {
+	public static final function setTimestampValue($name, $value) {
+		if ($value !== NULL) {
+			$date_time = new DateTime("@" . $value);
+
+			$formated = $date_time->format(self::SQL_DATE_FORMAT);
+
+			self::setXValue($name, $formated);
+		} else {
 			// Fix `@null`
 			self::setNullValue($name);
-
-			return;
 		}
-
-		$date_time = new DateTime("@" . $timestamp);
-
-		$formated = $date_time->format("Y-m-d H:i:s");
-
-		self::setStringValue($name, $formated);
 	}
 
 
 	/**
 	 * @param string $name
 	 * @param bool   $assoc
+	 * @param mixed  $default_value
 	 *
 	 * @return mixed
 	 */
-	public static final function getJsonValue($name, $assoc = false) {
-		return json_decode(self::getStringValue($name), $assoc);
+	public static final function getJsonValue($name, $assoc = false, $default_value = NULL) {
+		return json_decode(self::getXValue($name, $default_value), $assoc);
 	}
 
 
@@ -271,7 +287,7 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 * @param mixed  $value
 	 */
 	public static final function setJsonValue($name, $value) {
-		self::setStringValue($name, json_encode($value));
+		self::setXValue($name, json_encode($value));
 	}
 
 
