@@ -16,9 +16,18 @@ git clone git@git.studer-raimann.ch:ILIAS/Plugins/ActiveRecordConfig.git ActiveR
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/activerecordconfig": "^0.4.5"
+  "srag/activerecordconfig": "^0.4.6"
 },
 ```
+
+If your plugin should support ILIAS 5.2 or earlier you need to require `ActiveRecord` like follow in your `composer.json` file:
+```json
+"autoload": {
+    "classmap": [
+      "../../../../../../../Services/ActiveRecord/class.ActiveRecord.php",
+```
+May you need to adjust the relative `ActiveRecord` path
+
 And run a `composer install`.
 
 If you deliver your plugin, the plugin has it's own copy of this library and the user doesn't need to install the library.

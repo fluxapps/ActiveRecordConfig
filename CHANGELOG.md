@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.6]
+- Require ActiveRecord hint
+
 ## [0.4.5]
 - PSR-4
 
