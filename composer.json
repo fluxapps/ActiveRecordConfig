@@ -23,6 +23,7 @@
     "email": "support-custom1@studer-raimann.ch"
   },
   "require": {
+    "php": "^5.6",
     "srag/dic": "^0.2.3"
   },
   "autoload": {
