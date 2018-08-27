@@ -16,7 +16,7 @@ git clone git@git.studer-raimann.ch:ILIAS/Plugins/ActiveRecordConfig.git ActiveR
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/activerecordconfig": "^0.5.0"
+  "srag/activerecordconfig": "^0.5.1"
 },
 ```
 
@@ -151,9 +151,9 @@ Do the follow in your new config class:
 
 Finally you need to add an update step to migrate your data
 1. Remove the old config class database install
-2. Add the new config class database install
+2. Add the new config class database install like `XConfig::updateDB();`
 3. Migrate the data from the old config class to the new config class if the old exists and delete the old
-4. Add an uninstall step for both old and new config classes
+4. Add an uninstall step for both old and new config classes (In `beforeUninstall` or `uninstallCustom` of your plugin class). Also remove the old config database table to make sure that it also be removed if the plugin should unistalled without update before it
 
 Here some examples, depending how yould old config class was:
 
