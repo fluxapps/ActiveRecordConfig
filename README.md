@@ -167,7 +167,7 @@ if (\srag\DIC\DICCache::dic()->database()->tableExists(XConfigOld::TABLE_NAME)) 
 	$config = XConfigOld::getConfig();
 
  	XConfig::setSome($config->getSome());
-	///...
+	//...
 
 	\srag\DIC\DICCache::dic()->database()->dropTable(XConfigOld::TABLE_NAME);
 }
@@ -189,6 +189,7 @@ if (\srag\DIC\DICCache::dic()->database()->tableExists(XConfigOld::TABLE_NAME)) 
 			case XConfig::KEY_SOME:
 			 	XConfig::setSome($config->getValue());
 				break;
+			//...
 			default:
 				break;
 		}
