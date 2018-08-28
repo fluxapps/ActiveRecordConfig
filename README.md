@@ -76,7 +76,7 @@ And now add some configs:
 If you need to delete a config add:
 ```php
 /**
- * @param string $some
+ *
  */
 public static function deleteSome() {
 	self::deleteName(self::KEY_SOME);
