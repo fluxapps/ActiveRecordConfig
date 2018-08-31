@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.8]
+- Rename `deleteName` to `removeName`
+
 ## [0.5.7]
 - Use always latest version of ActiveRecordConfig
 

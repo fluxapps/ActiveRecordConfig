@@ -63,13 +63,13 @@ And now add some configs:
 	}
 ```
 
-If you need to delete a config add:
+If you need to remove a config add:
 ```php
 /**
  *
  */
-public static function deleteSome() {
-	self::deleteName(self::KEY_SOME);
+public static function removeSome() {
+	self::removeName(self::KEY_SOME);
 }
 ```
 
@@ -115,11 +115,11 @@ self::getValues();
 self::setValues(array $configs, $delete_exists = false);
 
 /**
- * Delete a name
+ * Remove a name
  * 
  * @param string $name Name
  */
-self::deleteName($name);
+self::removeName($name);
 ```
 
 Other `ActiveRecord` methods should be not used!
