@@ -1,7 +1,7 @@
 {
   "name": "srag/activerecordconfig",
   "description": "Simple ActiveRecord config for ILIAS plugins",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "type": "library",
   "keywords": [
     "ILIAS",

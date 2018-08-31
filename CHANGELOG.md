@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.9]
+- Fix
+
 ## [0.5.8]
 - Rename `deleteName` to `removeName`
 
