@@ -154,9 +154,9 @@ Column name based:
 XConfig::updateDB();
 
 if (\srag\DIC\DICStatic::dic()->database()->tableExists(XConfigOld::TABLE_NAME)) {
-	$config = XConfigOld::getConfig();
+	$config_old = XConfigOld::getConfig();
 
- 	XConfig::setSome($config->getSome());
+ 	XConfig::setSome($config_old->getSome());
 	//...
 
 	\srag\DIC\DICStatic::dic()->database()->dropTable(XConfigOld::TABLE_NAME);
