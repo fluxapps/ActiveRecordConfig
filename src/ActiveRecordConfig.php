@@ -12,6 +12,8 @@ use srag\DIC\DICTrait;
  * Class ActiveRecordConfig
  *
  * @package srag\ActiveRecordConfig
+ *
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 abstract class ActiveRecordConfig extends ActiveRecord {
 
