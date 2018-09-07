@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.12]
+- Update readme
+
 ## [0.5.11]
 - PHP7 comments
 
