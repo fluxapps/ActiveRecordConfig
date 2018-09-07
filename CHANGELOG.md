@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.13]
+- Add `@author` to classes
+
 ## [0.5.12]
 - Update readme
 
