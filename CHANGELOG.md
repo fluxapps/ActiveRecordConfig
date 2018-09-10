@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.14]
+- Added dependencies to readme
+
 ## [0.5.13]
 - Add `@author` to classes
 
@@ -81,4 +84,3 @@
 
 ## [0.1.0]
 - First version
-
