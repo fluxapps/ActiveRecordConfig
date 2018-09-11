@@ -257,7 +257,7 @@ Please use it for further development!
 * Adjustment suggestions by pull requests on https://git.studer-raimann.ch/ILIAS/Plugins/ActiveRecordConfig/tree/develop
 * Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/ACCONF
 * Bug reports under https://jira.studer-raimann.ch/projects/ACCONF
-* For external developers please send an email to support-custom1@studer-raimann.ch
+* For external users please send an email to support-custom1@studer-raimann.ch
 
 ### Development
 If you want development in this library you should install this library like follow:
