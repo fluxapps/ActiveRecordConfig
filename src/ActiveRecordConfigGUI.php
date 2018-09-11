@@ -80,7 +80,7 @@ class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 			throw new ActiveRecordConfigException("Class $config_form_gui_class_name not exists!");
 		}
 
-		$form = new $config_form_gui_class_name();
+		$form = new $config_form_gui_class_name($this);
 
 		if (!$config_form_gui_class_name instanceof ActiveRecordConfigFormGUI) {
 			throw new ActiveRecordConfigException("Class $config_form_gui_class_name not extends ActiveRecordConfigFormGUI!");

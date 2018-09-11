@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.6.1]
+- Fix create `ActiveRecordConfigFormGUI` instance
+
 ## [0.6.0]
 - Base `ActiveRecordConfigGUI` and `ActiveRecordConfigFormGUI`
 
