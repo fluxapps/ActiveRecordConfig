@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.6.3]
+- Update readme
+
 ## [0.6.2]
 - Fix create `ActiveRecordConfigFormGUI` instance again
 

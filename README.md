@@ -125,7 +125,7 @@ self::removeName(/*string*/$name)/*: void*/;
 Other `ActiveRecord` methods should be not used!
 
 ### ActiveRecordConfigGUI
-Create a class `ilXConfigGUI` in `classes`:
+Create a class `ilXConfigGUI`:
 ```php
 //...
 use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
@@ -136,7 +136,7 @@ class ilXConfigGUI extends ActiveRecordConfigGUI {
 	const REMOVE_PLUGIN_DATA_CONFIRM_CLASS_NAME = XConfigFormGUI::class;
 }
 ```
-and a class `XConfigFormGUI` in `src/Config`:
+and a class `XConfigFormGUI`:
 ```php
 //...
 use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;

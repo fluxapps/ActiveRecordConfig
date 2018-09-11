@@ -91,7 +91,9 @@ class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 
 	/**
-	 *
+	 * @throws ActiveRecordConfigException Your class needs to implement the CONFIG_FORM_GUI_CLASS_NAME constant!
+	 * @throws ActiveRecordConfigException Class $config_form_gui_class_name not exists!
+	 * @throws ActiveRecordConfigException Class $config_form_gui_class_name not extends ActiveRecordConfigFormGUI!
 	 */
 	protected function configure()/*: void*/ {
 		$form = $this->getConfigurationForm();
@@ -101,7 +103,9 @@ class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 
 	/**
-	 *
+	 * @throws ActiveRecordConfigException Your class needs to implement the CONFIG_FORM_GUI_CLASS_NAME constant!
+	 * @throws ActiveRecordConfigException Class $config_form_gui_class_name not exists!
+	 * @throws ActiveRecordConfigException Class $config_form_gui_class_name not extends ActiveRecordConfigFormGUI!
 	 */
 	protected function updateConfigure()/*: void*/ {
 		$form = $this->getConfigurationForm();
