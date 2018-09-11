@@ -248,6 +248,7 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(XConfigOld::TABLE_NAME))
 ```
 
 ### Dependencies
+* [composer](https://getcomposer.org)
 * [srag/dic](https://packagist.org/packages/srag/dic)
 
 Please use it for further development!
