@@ -34,7 +34,7 @@ class XConfig extends ActiveRecordConfig {
 	//...
 	const TABLE_NAME = "db_table_name";
 	//...
-	const PLUGIN_CLASS_NAME = XPlugin::class;
+	const PLUGIN_CLASS_NAME = ilXPlugin::class;
 	//...
 }
 ```
@@ -123,6 +123,63 @@ self::removeName(/*string*/$name)/*: void*/;
 ```
 
 Other `ActiveRecord` methods should be not used!
+
+### ActiveRecordConfigGUI
+Create a class `ilXConfigGUI` in `classes`:
+```php
+//...
+use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
+//...
+class ilXConfigGUI extends ActiveRecordConfigGUI {
+	//...
+	const PLUGIN_CLASS_NAME = ilXPlugin::class;
+	const REMOVE_PLUGIN_DATA_CONFIRM_CLASS_NAME = XConfigFormGUI::class;
+}
+```
+and a class `XConfigFormGUI` in `src/Config`:
+```php
+//...
+use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
+//...
+class XConfigFormGUI extends ActiveRecordConfigFormGUI {
+	//...
+	const PLUGIN_CLASS_NAME = ilXPlugin::class;
+	
+	/**
+     * @inheritdoc
+     */
+    protected function setForm()/*: void*/ {
+        parent::setForm();
+        
+        // TODO: Fill your config form
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function updateConfig()/*: void*/ {
+        // TODO: Update your config
+    }
+}
+```
+`ilXPlugin` is the name of your plugin class ([DICTrait](https://github.com/studer-raimann/DIC)).
+`XConfigFormGUI` is the name of your config form gui class.
+
+
+Then you need to declare some language variables like:
+English:
+```
+activerecordconfig_configuration#:#Configuration
+activerecordconfig_configuration_saved#:#Configuration saved
+activerecordconfig_save#:#Save
+```
+German:
+```
+activerecordconfig_configuration#:#Konfiguration
+activerecordconfig_configuration_saved#:#Konfiguration gespeichert
+activerecordconfig_save#:#Speichern
+```
 
 ### Migrate from your old config class
 
