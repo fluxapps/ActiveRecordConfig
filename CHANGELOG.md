@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.6.0]
+- Base `ActiveRecordConfigGUI` and `ActiveRecordConfigFormGUI`
+
 ## [0.5.14]
 - Added dependencies to readme
 
