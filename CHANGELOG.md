@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.6.4]
+- Update readme
+
 ## [0.6.3]
 - Update readme
 
