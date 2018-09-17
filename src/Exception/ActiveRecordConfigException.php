@@ -9,7 +9,7 @@ use ilException;
  *
  * @package srag\ActiveRecordConfig\Exception
  *
- * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
+ * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class ActiveRecordConfigException extends ilException {
 

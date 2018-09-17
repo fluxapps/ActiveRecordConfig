@@ -12,9 +12,9 @@ use srag\DIC\DICTrait;
  *
  * @package srag\ActiveRecordConfig
  *
- * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
+ * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ActiveRecordConfigGUI extends ilPluginConfigGUI {
+abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 	use DICTrait;
 	/**
