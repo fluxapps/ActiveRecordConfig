@@ -125,6 +125,9 @@ self::removeName(/*string*/$name)/*: void*/;
 Other `ActiveRecord` methods should be not used!
 
 ### ActiveRecordConfigGUI
+This class is experimental. Use it with care!
+It only supports a config with an `ilPropertyFormGUI`!
+
 Create a class `ilXConfigGUI`:
 ```php
 //...
