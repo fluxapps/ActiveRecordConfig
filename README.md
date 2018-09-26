@@ -3,7 +3,7 @@ Simple ActiveRecord config for ILIAS plugins
 ### Usage
 
 #### Composer
-First add the follow to your `composer.json` file:
+First add the following to your `composer.json` file:
 ```json
 "require": {
   "srag/activerecordconfig": ">=0.1.0"
