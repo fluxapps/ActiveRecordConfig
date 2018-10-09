@@ -214,6 +214,8 @@ Column name based:
 XConfig::updateDB();
 
 if (\srag\DIC\DICStatic::dic()->database()->tableExists(XConfigOld::TABLE_NAME)) {
+	XConfigOld::updateDB();
+
 	$config_old = XConfigOld::getConfig();
 
  	XConfig::setSome($config_old->getSome());
@@ -231,6 +233,8 @@ Key and value based (Similar to this library):
 XConfig::updateDB();
 
 if (\srag\DIC\DICStatic::dic()->database()->tableExists(XConfigOld::TABLE_NAME)) {
+	XConfigOld::updateDB();
+
 	foreach (XConfigOld::get() as $config) {
 		/**
 		 * @var XConfigOld $config
