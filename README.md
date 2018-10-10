@@ -255,7 +255,7 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(XConfigOld::TABLE_NAME))
 ```
 
 ### Dependencies
-* PHP 5.6
+* PHP >=5.6
 * [composer](https://getcomposer.org)
 * [srag/dic](https://packagist.org/packages/srag/dic)
 
