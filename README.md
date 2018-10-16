@@ -139,7 +139,10 @@ use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
 class ilXConfigGUI extends ActiveRecordConfigGUI {
 	//...
 	const PLUGIN_CLASS_NAME = ilXPlugin::class;
-	const REMOVE_PLUGIN_DATA_CONFIRM_CLASS_NAME = XConfigFormGUI::class;
+	/**
+     * @var array
+     */
+    protected static $tabs = [ self::TAB_CONFIGURATION => XConfigFormGUI::class ];
 }
 ```
 and a class `XConfigFormGUI`:
