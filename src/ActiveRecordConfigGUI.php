@@ -289,7 +289,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 *
 	 * @return string
 	 */
-	private final function txt(/*string*/
+	protected final function txt(/*string*/
 		$key)/*: string*/ {
 		return self::plugin()->translate($key, self::LANG_MODULE_CONFIG);
 	}
