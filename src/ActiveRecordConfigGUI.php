@@ -3,8 +3,6 @@
 namespace srag\ActiveRecordConfig;
 
 use ilPluginConfigGUI;
-use ilPropertyFormGUI;
-use ilTable2GUI;
 use ilUtil;
 use srag\ActiveRecordConfig\Exception\ActiveRecordConfigException;
 use srag\DIC\DICTrait;
@@ -211,13 +209,11 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 		$config_gui_class_name = static::$tabs[$tab_id];
 
 		switch (true) {
-			case ($config_gui_class_name instanceof ActiveRecordConfigFormGUI):
-			case ($config_gui_class_name instanceof ilPropertyFormGUI):
+			case (substr($config_gui_class_name, - strlen("FormGUI")) === "FormGUI"):
 				$config_gui = $this->getConfigurationFormGUI($config_gui_class_name);
 				break;
 
-			case ($config_gui_class_name instanceof ActiveRecordConfigTableGUI):
-			case ($config_gui_class_name instanceof ilTable2GUI):
+			case (substr($config_gui_class_name, - strlen("TableGUI")) === "TableGUI"):
 				$config_gui = $this->getConfigurationTable($config_gui_class_name, self::CMD_CONFIGURE . "_" . $tab_id, $tab_id);
 				break;
 
