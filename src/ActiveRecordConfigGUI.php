@@ -76,6 +76,10 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 				$this->setTabs();
 
 				switch (true) {
+					case (in_array($cmd, static::$custom_commands)):
+						$this->{$cmd}();
+						break;
+
 					case ($cmd === self::CMD_CONFIGURE):
 						$this->configure(key(static::$tabs));
 						break;
@@ -102,10 +106,6 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 						$tab_id = substr($cmd, strlen(self::CMD_RESET_FILTER . "_"));
 
 						$this->resetFilter($tab_id);
-						break;
-
-					case (in_array($cmd, static::$custom_commands)):
-						$this->{$cmd}();
 						break;
 
 					default:
@@ -147,7 +147,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 */
 	private final function updateConfigure(/*string*/
 		$tab_id)/*: void*/ {
-		$form = $this->getConfigurationFormGUI(static::$tabs[$tab_id]);
+		$form = $this->getConfigurationFormGUI(static::$tabs[$tab_id], $tab_id);
 
 		$form->setValuesByPost();
 
@@ -210,7 +210,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 		switch (true) {
 			case (substr($config_gui_class_name, - strlen("FormGUI")) === "FormGUI"):
-				$config_gui = $this->getConfigurationFormGUI($config_gui_class_name);
+				$config_gui = $this->getConfigurationFormGUI($config_gui_class_name, $tab_id);
 				break;
 
 			case (substr($config_gui_class_name, - strlen("TableGUI")) === "TableGUI"):
@@ -228,6 +228,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 	/**
 	 * @param string $config_form_gui_class_name
+	 * @param string $tab_id
 	 *
 	 * @return ActiveRecordConfigFormGUI
 	 *
@@ -235,12 +236,13 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 * @throws ActiveRecordConfigException Class $config_form_gui_class_name not extends ActiveRecordConfigFormGUI!
 	 */
 	private final function getConfigurationFormGUI(/*string*/
-		$config_form_gui_class_name)/*: ActiveRecordConfigFormGUI*/ {
+		$config_form_gui_class_name, /*string*/
+		$tab_id)/*: ActiveRecordConfigFormGUI*/ {
 		if (!class_exists($config_form_gui_class_name)) {
 			throw new ActiveRecordConfigException("Class $config_form_gui_class_name not exists!");
 		}
 
-		$config_form_gui = new $config_form_gui_class_name($this);
+		$config_form_gui = new $config_form_gui_class_name($this, $tab_id);
 
 		if (!$config_form_gui instanceof ActiveRecordConfigFormGUI) {
 			throw new ActiveRecordConfigException("Class $config_form_gui_class_name not extends ActiveRecordConfigFormGUI!");
