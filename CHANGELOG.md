@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.7.0]
+- Correctly store boolean
+
 ## [0.6.4]
 - Update readme
 
