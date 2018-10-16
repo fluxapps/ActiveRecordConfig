@@ -48,7 +48,7 @@ abstract class ActiveRecordConfigFormGUI extends ilPropertyFormGUI {
 	protected function initForm()/*: void*/ {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
 
-		$this->setTitle($this->txt("configuration"));
+		$this->setTitle($this->txt($this->tab_id));
 
 		$this->addCommandButton(ActiveRecordConfigGUI::CMD_UPDATE_CONFIGURE . "_" . $this->tab_id, $this->txt("save"));
 	}

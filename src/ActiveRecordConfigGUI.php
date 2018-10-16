@@ -134,6 +134,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 */
 	private final function configure(/*string*/
 		$tab_id)/*: void*/ {
+		self::dic()->tabs()->activateTab($tab_id);
+
 		$gui = $this->getConfigurationGUI($tab_id);
 
 		self::plugin()->output($gui);
@@ -147,6 +149,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 */
 	private final function updateConfigure(/*string*/
 		$tab_id)/*: void*/ {
+		self::dic()->tabs()->activateTab($tab_id);
+
 		$form = $this->getConfigurationFormGUI(static::$tabs[$tab_id], $tab_id);
 
 		$form->setValuesByPost();
@@ -159,7 +163,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 		$form->updateConfig();
 
-		ilUtil::sendSuccess($this->txt("configuration_saved"));
+		ilUtil::sendSuccess($this->txt($tab_id . "_saved"));
 
 		self::plugin()->output($form);
 	}
