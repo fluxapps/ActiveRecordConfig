@@ -10,11 +10,12 @@ First add the following to your `composer.json` file:
 },
 ```
 
-If your plugin should support ILIAS 5.2 or earlier you need to require `ActiveRecord` like follow in your `composer.json` file:
+If your plugin should support ILIAS 5.2 or earlier you need to require `ActiveRecord` and `ilPluginConfigGUI` like follow in your `composer.json` file:
 ```json
 "autoload": {
     "classmap": [
       "../../../../../../../Services/ActiveRecord/class.ActiveRecord.php",
+      "../../../../../../../Services/Component/classes/class.ilPluginConfigGUI.php",
 ```
 May you need to adjust the relative `ActiveRecord` path
 
