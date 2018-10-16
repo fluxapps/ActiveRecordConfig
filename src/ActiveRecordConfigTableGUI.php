@@ -155,7 +155,7 @@ abstract class ActiveRecordConfigTableGUI extends ilTable2GUI {
 	 *
 	 * @return string
 	 */
-	private final function txt(/*string*/
+	protected final function txt(/*string*/
 		$key)/*: string*/ {
 		return self::plugin()->translate($key, ActiveRecordConfigGUI::LANG_MODULE_CONFIG);
 	}
