@@ -31,6 +31,10 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 * @abstract
 	 */
 	const CONFIG_FORM_GUI_CLASS_NAME = "";
+	/**
+	 * @var string
+	 */
+	const LANG_MODULE_CONFIG = "config";
 
 
 	/**
@@ -132,7 +136,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 */
 	private final function txt(/*string*/
 		$key)/*: string*/ {
-		return self::plugin()->translate($key, "activerecordconfig");
+		return self::plugin()->translate($key, self::LANG_MODULE_CONFIG);
 	}
 
 

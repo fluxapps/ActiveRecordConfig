@@ -174,15 +174,15 @@ class XConfigFormGUI extends ActiveRecordConfigFormGUI {
 Then you need to declare some language variables like:
 English:
 ```
-activerecordconfig_configuration#:#Configuration
-activerecordconfig_configuration_saved#:#Configuration saved
-activerecordconfig_save#:#Save
+config_configuration#:#Configuration
+config_configuration_saved#:#Configuration saved
+config_save#:#Save
 ```
 German:
 ```
-activerecordconfig_configuration#:#Konfiguration
-activerecordconfig_configuration_saved#:#Konfiguration gespeichert
-activerecordconfig_save#:#Speichern
+config_configuration#:#Konfiguration
+config_configuration_saved#:#Konfiguration gespeichert
+config_save#:#Speichern
 ```
 
 ### Migrate from your old config class

@@ -3,6 +3,7 @@
 ## [0.7.0]
 - Correctly store boolean
 - Rename setForm to initForm
+- LANG_MODULE_CONFIG
 
 ## [0.6.4]
 - Update readme

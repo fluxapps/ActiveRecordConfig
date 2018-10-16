@@ -61,6 +61,6 @@ abstract class ActiveRecordConfigFormGUI extends ilPropertyFormGUI {
 	 */
 	private final function txt(/*string*/
 		$key)/*: string*/ {
-		return self::plugin()->translate($key, "activerecordconfig");
+		return self::plugin()->translate($key, ActiveRecordConfigGUI::LANG_MODULE_CONFIG);
 	}
 }
