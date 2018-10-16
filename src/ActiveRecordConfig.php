@@ -262,7 +262,7 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 */
 	protected static final function setBooleanValue(/*string*/
 		$name, $value)/*: void*/ {
-		self::setXValue($name, boolval($value) ? "true" : "false");
+		self::setXValue($name, json_encode(boolval($value)));
 	}
 
 
