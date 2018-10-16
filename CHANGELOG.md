@@ -2,6 +2,7 @@
 
 ## [0.7.0]
 - Correctly store boolean
+- Rename setForm to initForm
 
 ## [0.6.4]
 - Update readme

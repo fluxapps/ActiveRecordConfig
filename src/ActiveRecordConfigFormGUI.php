@@ -31,14 +31,14 @@ abstract class ActiveRecordConfigFormGUI extends ilPropertyFormGUI {
 
 		$this->parent = $parent;
 
-		$this->setForm();
+		$this->initForm();
 	}
 
 
 	/**
 	 *
 	 */
-	protected function setForm()/*: void*/ {
+	protected function initForm()/*: void*/ {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
 
 		$this->setTitle($this->txt("configuration"));

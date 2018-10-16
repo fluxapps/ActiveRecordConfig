@@ -152,8 +152,8 @@ class XConfigFormGUI extends ActiveRecordConfigFormGUI {
 	/**
      * @inheritdoc
      */
-    protected function setForm()/*: void*/ {
-        parent::setForm();
+    protected function initForm()/*: void*/ {
+        parent::initForm();
         
         // TODO: Fill your config form
     }
