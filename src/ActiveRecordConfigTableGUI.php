@@ -99,11 +99,11 @@ abstract class ActiveRecordConfigTableGUI extends ilTable2GUI {
 
 
 	/**
-	 * @param array $result
+	 * @param array $row
 	 */
 	protected /*abstract*/
 	function fillRow(/*array*/
-		$result) {
+		$row) {
 
 	}
 
