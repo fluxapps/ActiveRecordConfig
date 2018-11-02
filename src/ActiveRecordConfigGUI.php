@@ -19,18 +19,26 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	use DICTrait;
 	/**
 	 * @var string
+	 *
+	 * @access namespace
 	 */
 	const CMD_APPLY_FILTER = "applyFilter";
 	/**
 	 * @var string
+	 *
+	 * @access namespace
 	 */
 	const CMD_RESET_FILTER = "resetFilter";
 	/**
 	 * @var string
+	 *
+	 * @access namespace
 	 */
 	const CMD_CONFIGURE = "configure";
 	/**
 	 * @var string
+	 *
+	 * @access namespace
 	 */
 	const CMD_UPDATE_CONFIGURE = "updateConfigure";
 	/**
