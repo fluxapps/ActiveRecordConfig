@@ -36,11 +36,11 @@ namespace srag\Plugins\X\Config
 use srag\ActiveRecordConfig\ActiveRecordConfig;
 //...
 class Config extends ActiveRecordConfig {
-	//...
-	const TABLE_NAME = "db_table_name";
-	//...
-	const PLUGIN_CLASS_NAME = ilXPlugin::class;
-	//...
+    //...
+    const TABLE_NAME = "db_table_name";
+    //...
+    const PLUGIN_CLASS_NAME = ilXPlugin::class;
+    //...
 }
 ```
 `db_table_name` is the name of your database table.
@@ -49,24 +49,24 @@ You don't need to use `DICTrait`, it is already in use!
 
 And now add some configs:
 ```php
-	//...
-	const KEY_SOME = "some";
-	//...
-	const DEFAULT_SOME = "some";
-	//...
-	/**
-	 * @return string
-	 */
-	public static function getSome()/*: string*/ {
-		return self::getStringValue(self::KEY_SOME, self::DEFAULT_SOME);
-	}
+    //...
+    const KEY_SOME = "some";
+    //...
+    const DEFAULT_SOME = "some";
+    //...
+    /**
+     * @return string
+     */
+    public static function getSome()/*: string*/ {
+        return self::getStringValue(self::KEY_SOME, self::DEFAULT_SOME);
+    }
 
-	/**
-	 * @param string $some
-	 */
-	public static function setSome(/*string*/$some)/*: void*/ {
-		self::setStringValue(self::KEY_SOME, $some);
-	}
+    /**
+     * @param string $some
+     */
+    public static function setSome(/*string*/$some)/*: void*/ {
+        self::setStringValue(self::KEY_SOME, $some);
+    }
 ```
 
 If you need to remove a config add:
@@ -75,7 +75,7 @@ If you need to remove a config add:
  *
  */
 public static function removeSome()/*: void*/ {
-	self::removeName(self::KEY_SOME);
+    self::removeName(self::KEY_SOME);
 }
 ```
 
@@ -140,9 +140,9 @@ Create a class `ilXConfigGUI`:
 use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
 //...
 class ilXConfigGUI extends ActiveRecordConfigGUI {
-	//...
-	const PLUGIN_CLASS_NAME = ilXPlugin::class;
-	/**
+    //...
+    const PLUGIN_CLASS_NAME = ilXPlugin::class;
+    /**
      * @var array
      */
     protected static $tabs = [ self::TAB_CONFIGURATION => ConfigFormGUI::class ];
@@ -159,10 +159,10 @@ namespace srag\Plugins\X\Config
 use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
 //...
 class ConfigFormGUI extends ActiveRecordConfigFormGUI {
-	//...
-	const PLUGIN_CLASS_NAME = ilXPlugin::class;
-	
-	/**
+    //...
+    const PLUGIN_CLASS_NAME = ilXPlugin::class;
+    
+    /**
      * @inheritdoc
      */
     protected function initForm()/*: void*/ {
@@ -188,10 +188,10 @@ namespace srag\Plugins\X\Config
 use srag\ActiveRecordConfig\ActiveRecordConfigTableGUI;
 //...
 class ConfigTableGUI extends ActiveRecordConfigTableGUI {
-	//...
-	const PLUGIN_CLASS_NAME = ilXPlugin::class;
-	
-	/**
+    //...
+    const PLUGIN_CLASS_NAME = ilXPlugin::class;
+    
+    /**
      *
      */
     protected function initTable()/*: void*/ {
@@ -238,19 +238,19 @@ You can also override this commands.
 
 You can add custom commands in `ilXConfigGUI` if you nedd:
 ```php
-	//...
-	const CMD_COMMAND = "command";
-	//...
-	/**
-	 * @var array
-	 */
-	protected static $custom_commands = [
-		self::CMD_COMMAND
-	];
-	//...
-	protected function command()/*: void*/ {
-		// TODO: Implement your custom command
-	}
+    //...
+    const CMD_COMMAND = "command";
+    //...
+    /**
+     * @var array
+     */
+    protected static $custom_commands = [
+        self::CMD_COMMAND
+    ];
+    //...
+    protected function command()/*: void*/ {
+        // TODO: Implement your custom command
+    }
 //...
 ```
 
@@ -319,14 +319,14 @@ Column name based:
 \srag\Plugins\X\Config\Config::updateDB();
 
 if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME)) {
-	\srag\Plugins\X\Config\ConfigOld::updateDB();
+    \srag\Plugins\X\Config\ConfigOld::updateDB();
 
-	$config_old = \srag\Plugins\X\Config\ConfigOld::getConfig();
+    $config_old = \srag\Plugins\X\Config\ConfigOld::getConfig();
 
- 	\srag\Plugins\X\Config\Config::setSome($config_old->getSome());
-	//...
+     \srag\Plugins\X\Config\Config::setSome($config_old->getSome());
+    //...
 
-	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME);
+    \srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME);
 }
 ?>
 ```
@@ -338,23 +338,23 @@ Key and value based (Similar to this library):
 \srag\Plugins\X\Config\Config::updateDB();
 
 if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME)) {
-	\srag\Plugins\X\Config\ConfigOld::updateDB();
+    \srag\Plugins\X\Config\ConfigOld::updateDB();
 
-	foreach (\srag\Plugins\X\Config\ConfigOld::get() as $config) {
-		/**
-		 * @var \srag\Plugins\X\Config\ConfigOld $config
-		 */
-		switch($config->getName()) {
-			case \srag\Plugins\X\Config\Config::KEY_SOME:
-			 	\srag\Plugins\X\Config\Config::setSome($config->getValue());
-				break;
-			//...
-			default:
-				break;
-		}
-	}
+    foreach (\srag\Plugins\X\Config\ConfigOld::get() as $config) {
+        /**
+         * @var \srag\Plugins\X\Config\ConfigOld $config
+         */
+        switch($config->getName()) {
+            case \srag\Plugins\X\Config\Config::KEY_SOME:
+                 \srag\Plugins\X\Config\Config::setSome($config->getValue());
+                break;
+            //...
+            default:
+                break;
+        }
+    }
 
-	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME);
+    \srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME);
 }
 ?>
 ```
