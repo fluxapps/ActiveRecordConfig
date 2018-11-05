@@ -33,7 +33,7 @@ Declare your config class basically like follow:
 //...
 use srag\ActiveRecordConfig\ActiveRecordConfig;
 //...
-class XConfig extends ActiveRecordConfig {
+class Config extends ActiveRecordConfig {
 	//...
 	const TABLE_NAME = "db_table_name";
 	//...
@@ -76,7 +76,7 @@ public static function removeSome()/*: void*/ {
 }
 ```
 
-You can now access your config like `XConfig::getSome()` and set it like `XConfig::setSome("some")`.
+You can now access your config like `Config::getSome()` and set it like `Config::setSome("some")`.
 
 Internally all values are stored as strings and will casted with appropriates methods.
 You can define a default value, if the value is `null`.
@@ -131,26 +131,26 @@ Other `ActiveRecord` methods should be not used!
 This class is experimental. Use it with care!
 It only supports a config with an `ilPropertyFormGUI`!
 
-Create a class `ilXConfigGUI`:
+Create a class `ilConfigGUI`:
 ```php
 //...
 use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
 //...
-class ilXConfigGUI extends ActiveRecordConfigGUI {
+class ilConfigGUI extends ActiveRecordConfigGUI {
 	//...
 	const PLUGIN_CLASS_NAME = ilXPlugin::class;
 	/**
      * @var array
      */
-    protected static $tabs = [ self::TAB_CONFIGURATION => XConfigFormGUI::class ];
+    protected static $tabs = [ self::TAB_CONFIGURATION => ConfigFormGUI::class ];
 }
 ```
-and a class `XConfigFormGUI`:
+and a class `ConfigFormGUI`:
 ```php
 //...
 use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
 //...
-class XConfigFormGUI extends ActiveRecordConfigFormGUI {
+class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	//...
 	const PLUGIN_CLASS_NAME = ilXPlugin::class;
 	
@@ -173,7 +173,7 @@ class XConfigFormGUI extends ActiveRecordConfigFormGUI {
 }
 ```
 `ilXPlugin` is the name of your plugin class ([DICTrait](https://github.com/studer-raimann/DIC)).
-`XConfigFormGUI` is the name of your config form gui class.
+`ConfigFormGUI` is the name of your config form gui class.
 
 
 Then you need to declare some language variables like:
@@ -195,19 +195,19 @@ config_save#:#Speichern
 If you need to migrate from your old config class, so you need to keep your old config class in the code, so you can migrate the data
 
 Do the follow in your old config class:
-1. Rename your old config class from `XConfig` to `XConfigOld` (May simple `Old` subfix)
-2. Keep the old database name in `XConfigOld`
-3. Set all in `XConfigOld` to `@deprecated`
+1. Rename your old config class from `Config` to `ConfigOld` (May simple `Old` subfix)
+2. Keep the old database name in `ConfigOld`
+3. Set all in `ConfigOld` to `@deprecated`
 4. May refactoring also you old config class, so all code is in one class (Such as use `TABLE_NAME` const)
 
 Do the follow in your new config class:
-1. Create a new class `XConfig` with a new database new (May simple `_n` subfix)
-2. Implement `XConfig` with `ActiveRecordConfig` like described above
-3. Replace all usages of `XConfigOld` with `XConfig` in your code
+1. Create a new class `Config` with a new database new (May simple `_n` subfix)
+2. Implement `Config` with `ActiveRecordConfig` like described above
+3. Replace all usages of `ConfigOld` with `Config` in your code
 
 Finally you need to add an update step to migrate your data
 1. Remove the old config class database install in the `dbupdate.php` file. The old config class doesn't need anymore to be installed
-2. Add the new config class database install like `XConfig::updateDB();` in the `dbupdate.php` file
+2. Add the new config class database install like `Config::updateDB();` in the `dbupdate.php` file
 3. Migrate the data from the old config class to the new config class if the old exists and delete the old in the `dbupdate.php` file
 4. Add an uninstall step for both old and new config classes in `beforeUninstall` or `beforeUninstallCustom` of your plugin class. Also remove the old config database table to make sure that it also be removed if the plugin should be unistalled without update before it
 
@@ -217,17 +217,17 @@ Column name based:
 ```php
 <#2>
 <?php
-XConfig::updateDB();
+\srag\Plugins\X\Config\Config::updateDB();
 
-if (\srag\DIC\DICStatic::dic()->database()->tableExists(XConfigOld::TABLE_NAME)) {
-	XConfigOld::updateDB();
+if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME)) {
+	\srag\Plugins\X\Config\ConfigOld::updateDB();
 
-	$config_old = XConfigOld::getConfig();
+	$config_old = \srag\Plugins\X\Config\ConfigOld::getConfig();
 
- 	XConfig::setSome($config_old->getSome());
+ 	\srag\Plugins\X\Config\Config::setSome($config_old->getSome());
 	//...
 
-	\srag\DIC\DICStatic::dic()->database()->dropTable(XConfigOld::TABLE_NAME);
+	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME);
 }
 ?>
 ```
@@ -236,18 +236,18 @@ Key and value based (Similar to this library):
 ```php
 <#2>
 <?php
-XConfig::updateDB();
+\srag\Plugins\X\Config\Config::updateDB();
 
-if (\srag\DIC\DICStatic::dic()->database()->tableExists(XConfigOld::TABLE_NAME)) {
-	XConfigOld::updateDB();
+if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME)) {
+	\srag\Plugins\X\Config\ConfigOld::updateDB();
 
-	foreach (XConfigOld::get() as $config) {
+	foreach (\srag\Plugins\X\Config\ConfigOld::get() as $config) {
 		/**
-		 * @var XConfigOld $config
+		 * @var \srag\Plugins\X\Config\ConfigOld $config
 		 */
 		switch($config->getName()) {
-			case XConfig::KEY_SOME:
-			 	XConfig::setSome($config->getValue());
+			case \srag\Plugins\X\Config\Config::KEY_SOME:
+			 	\srag\Plugins\X\Config\Config::setSome($config->getValue());
 				break;
 			//...
 			default:
@@ -255,7 +255,7 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(XConfigOld::TABLE_NAME))
 		}
 	}
 
-	\srag\DIC\DICStatic::dic()->database()->dropTable(XConfigOld::TABLE_NAME);
+	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME);
 }
 ?>
 ```
