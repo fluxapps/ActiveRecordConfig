@@ -197,7 +197,17 @@ class ConfigTableGUI extends ActiveRecordConfigTableGUI {
     protected function initTable()/*: void*/ {
         parent::initTable();
 
-        // TODO: Update your config template file
+        // TODO: Set your config template file
+    }
+    
+    
+    /**
+     *
+     */
+    public function initFilter() {
+        parent::initFilter();
+        
+        // TODO: Set your config filter
     }
 
 
@@ -205,7 +215,7 @@ class ConfigTableGUI extends ActiveRecordConfigTableGUI {
      *
      */
     protected function initData()/*: void*/ {
-        // TODO: Update your config data
+        // TODO: Set your config data
     }
 
 
@@ -213,7 +223,7 @@ class ConfigTableGUI extends ActiveRecordConfigTableGUI {
      *
      */
     protected function initColumns()/*: void*/ {
-        // TODO: Update your config columns
+        // TODO: Set your config columns
     }
 
 
@@ -221,7 +231,7 @@ class ConfigTableGUI extends ActiveRecordConfigTableGUI {
      * @param array $row
      */
     protected function fillRow(/*array*/ $row)/*: void*/ {
-        // TODO: Update your config row
+        // TODO: Set your config row
     }
 }
 ```
