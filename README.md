@@ -31,6 +31,8 @@ Hint: Because of multiple autoloaders of plugins, it could be, that different ve
 Declare your config class basically like follow:
 ```php
 //...
+namespace srag\Plugins\X\Config
+//...
 use srag\ActiveRecordConfig\ActiveRecordConfig;
 //...
 class Config extends ActiveRecordConfig {
@@ -130,14 +132,14 @@ Other `ActiveRecord` methods should be not used!
 
 ### ActiveRecordConfigGUI
 This class is experimental. Use it with care!
-It only supports a config with an `ilPropertyFormGUI`!
+It only supports a config with an `ilPropertyFormGUI` or an `ilTable2GUI`!
 
-Create a class `ilConfigGUI`:
+Create a class `ilXConfigGUI`:
 ```php
 //...
 use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
 //...
-class ilConfigGUI extends ActiveRecordConfigGUI {
+class ilXConfigGUI extends ActiveRecordConfigGUI {
 	//...
 	const PLUGIN_CLASS_NAME = ilXPlugin::class;
 	/**
@@ -146,8 +148,13 @@ class ilConfigGUI extends ActiveRecordConfigGUI {
     protected static $tabs = [ self::TAB_CONFIGURATION => ConfigFormGUI::class ];
 }
 ```
-and a class `ConfigFormGUI`:
+
+Declare in `$tabs` your tabs. The key is the tab id and the value your config tab class.
+
+A config tab class can be either a class `ConfigFormGUI`:
 ```php
+//...
+namespace srag\Plugins\X\Config
 //...
 use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
 //...
@@ -173,10 +180,79 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
     }
 }
 ```
+or a class `ConfigTableGUI`:
+```php
+//...
+namespace srag\Plugins\X\Config
+//...
+use srag\ActiveRecordConfig\ActiveRecordConfigTableGUI;
+//...
+class ConfigTableGUI extends ActiveRecordConfigTableGUI {
+	//...
+	const PLUGIN_CLASS_NAME = ilXPlugin::class;
+	
+	/**
+     *
+     */
+    protected function initTable()/*: void*/ {
+        parent::initTable();
+
+        // TODO: Update your config template file
+    }
+
+
+    /**
+     *
+     */
+    protected function initData()/*: void*/ {
+        // TODO: Update your config data
+    }
+
+
+    /**
+     *
+     */
+    protected function initColumns()/*: void*/ {
+        // TODO: Update your config columns
+    }
+
+
+    /**
+     * @param array $row
+     */
+    protected function fillRow(/*array*/ $row)/*: void*/ {
+        // TODO: Update your config row
+    }
+}
+```
+
 `ilXPlugin` is the name of your plugin class ([DICTrait](https://github.com/studer-raimann/DIC)).
 `ConfigFormGUI` is the name of your config form gui class.
 You don't need to use `DICTrait`, it is already in use!
 
+Your config tab class becomes automatic a command `configure_tabId`.
+`ConfigFormGUI` becomes additionally the command `updateConfigure_tabId`.
+`ConfigTableGUI` becomes additionally the command `applyFilter_tabId` and `resetFilter_tabId`.
+You dont't need to declare it self.
+You can also override this commands.
+
+You can add custom commands in `ilXConfigGUI` if you nedd:
+```php
+	//...
+	const CMD_COMMAND = "command";
+	//...
+	/**
+	 * @var array
+	 */
+	protected static $custom_commands = [
+		self::CMD_COMMAND
+	];
+	//...
+	protected function command()/*: void*/ {
+		// TODO: Implement your custom command
+	}
+//...
+```
 
 Then you need to declare some language variables like:
 English:
@@ -190,6 +266,27 @@ German:
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
 config_save#:#Speichern
+```
+
+For each tab you need to declare additionally a language variable:
+```
+config_tabid#:#Something
+```
+
+There exists some help functions in `ilXConfigGUI`:
+
+```php
+/**
+ * @param string $tab_id
+ *
+ * @return string
+ */
+$this->getCmdForTab(/*string*/ $tab_id)/*: void*/;
+
+/**
+ * @param string $tab_id
+ */
+$this->redirectToTab(/*string*/ $tab_id);/*: void*/
 ```
 
 ### Migrate from your old config class

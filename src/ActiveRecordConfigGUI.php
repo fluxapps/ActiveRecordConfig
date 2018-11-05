@@ -140,7 +140,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 *
 	 * @return string
 	 */
-	public final function getCmdForTab($tab_id) {
+	public final function getCmdForTab(/*string*/
+		$tab_id)/*: void*/ {
 		return self::CMD_CONFIGURE . "_" . $tab_id;
 	}
 
@@ -148,7 +149,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	/**
 	 * @param string $tab_id
 	 */
-	public final function redirectToTab($tab_id) {
+	public final function redirectToTab(/*string*/
+		$tab_id)/*: void*/ {
 		self::dic()->ctrl()->redirect($this, $this->getCmdForTab($tab_id));
 	}
 
