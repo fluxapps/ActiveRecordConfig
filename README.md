@@ -43,6 +43,7 @@ class Config extends ActiveRecordConfig {
 ```
 `db_table_name` is the name of your database table.
 `ilXPlugin` is the name of your plugin class ([DICTrait](https://github.com/studer-raimann/DIC)).
+You don't need to use `DICTrait`, it is already in use!
 
 And now add some configs:
 ```php
@@ -174,6 +175,7 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 ```
 `ilXPlugin` is the name of your plugin class ([DICTrait](https://github.com/studer-raimann/DIC)).
 `ConfigFormGUI` is the name of your config form gui class.
+You don't need to use `DICTrait`, it is already in use!
 
 
 Then you need to declare some language variables like:
