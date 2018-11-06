@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.9.0]
+- Rewrite ActiveRecordConfig for supports easier handling fields
+- DateTime datatype
+
 ## [0.8.0]
 - getCmdForTab and redirectToTab
 
