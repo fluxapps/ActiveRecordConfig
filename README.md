@@ -55,78 +55,33 @@ And now add some configs:
     const DEFAULT_SOME = "some";
     //...
     /**
-     * @return string
+     * @var array
      */
-    public static function getSome()/*: string*/ {
-        return self::getStringValue(self::KEY_SOME, self::DEFAULT_SOME);
-    }
-
-    /**
-     * @param string $some
-     */
-    public static function setSome(/*string*/$some)/*: void*/ {
-        self::setStringValue(self::KEY_SOME, $some);
-    }
+     protected static $fields = [
+		self::KEY_SOME => [ self::TYPE_STRING, self::DEFAULT_SOME ]
+     ];
+     //...
 ```
 
-If you need to remove a config add:
-```php
-/**
- *
- */
-public static function removeSome()/*: void*/ {
-    self::removeName(self::KEY_SOME);
-}
-```
+You can now access your config like `Config::getField(Config::KEY_SOME)` and set it like `Config::setField(Config::KEY_SOME, "some")`.
+If you need to remove a config, do `Config::removeField(Config::KEY_SOME)`.
 
-You can now access your config like `Config::getSome()` and set it like `Config::setSome("some")`.
+You can get all configs by `Config::getFields()` and set by `Config::setFields(array $fields)`.
 
 Internally all values are stored as strings and will casted with appropriates methods.
 You can define a default value, if the value is `null`.
 
 It exists the follow datatypes:
 
-| Datatype  | Methods                                    |
-| :-------- | :----------------------------------------- |
-| string    | * getStringValue<br>* setStringValue       |
-| int       | * getIntegerValue<br>* setIntegerValue     |
-| double    | * getDoubleValue<br>* setDoubleValue       |
-| bool      | * getBooleanValue<br>* setBooleanValue     |
-| timestamp | * getTimestampValue<br>* setTimestampValue |
-| json      | * getJsonValue<br>* setJsonValue           |
-| null      | * isNullValue<br>* setNullValue            |
-
-The following additional methods exist:
-```php
-/**
- * Get all names
- *
- * @return string[] [ "name", ... ]
- */
-self::getNames()/*: array*/;
-
-/**
- * Get all values
- *
- * @return string[] [ [ "name" => value ], ... ]
- */
-self::getValues()/*: array*/;
-
-/**
- * Set all values
- *
- * @param array $configs        [ [ "name" => value ], ... ]
- * @param bool  $delete_existss Delete all exists name before
- */
-self::setValues(array $configs, /*bool*/$delete_exists = false)/*: void*/;
-
-/**
- * Remove a name
- * 
- * @param string $name Name
- */
-self::removeName(/*string*/$name)/*: void*/;
-```
+| Datatype       | PHP type   |
+| :------------- | :--------- |
+| TYPE_STRING    | string     |
+| TYPE_INTEGER   | integer    |
+| TYPE_DOUBLE    | double     |
+| TYPE_BOOLEAN   | bool       |
+| TYPE_TIMESTAMP | integer    |
+| TYPE_DATETIME  | ilDateTime |
+| TYPE_JSON      | mixed      |
 
 Other `ActiveRecord` methods should be not used!
 
@@ -333,7 +288,7 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\X\Config\C
 
     $config_old = \srag\Plugins\X\Config\ConfigOld::getConfig();
 
-     \srag\Plugins\X\Config\Config::setSome($config_old->getSome());
+     \srag\Plugins\X\Config\Config::setField(Config::KEY_SOME, $config_old->getSome());
     //...
 
     \srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME);
@@ -354,14 +309,7 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\X\Config\C
         /**
          * @var \srag\Plugins\X\Config\ConfigOld $config
          */
-        switch($config->getName()) {
-            case \srag\Plugins\X\Config\Config::KEY_SOME:
-                 \srag\Plugins\X\Config\Config::setSome($config->getValue());
-                break;
-            //...
-            default:
-                break;
-        }
+        \srag\Plugins\X\Config\Config::setField($config->getName(), $config->getValue());
     }
 
     \srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\X\Config\ConfigOld::TABLE_NAME);
