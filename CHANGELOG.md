@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.9.2]
+- Add missing return in `setField`
+
 ## [0.9.1]
 - Easier: Default value is now voluntary
 
