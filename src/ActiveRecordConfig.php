@@ -161,31 +161,38 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 			switch ($type) {
 				case self::TYPE_STRING:
 					self::setStringValue($name, $value);
-					break;
+
+					return;
 
 				case self::TYPE_INTEGER:
 					self::setIntegerValue($name, $value);
-					break;
+
+					return;
 
 				case self::TYPE_DOUBLE:
 					self::setDoubleValue($name, $value);
-					break;
+
+					return;
 
 				case self::TYPE_BOOLEAN:
 					self::setBooleanValue($name, $value);
-					break;
+
+					return;
 
 				case self::TYPE_TIMESTAMP:
 					self::setTimestampValue($name, $value);
-					break;
+
+					return;
 
 				case self::TYPE_DATETIME:
 					self::setDateTimeValue($name, $value);
-					break;
+
+					return;
 
 				case self::TYPE_JSON:
 					self::setJsonValue($name, $value);
-					break;
+
+					return;
 
 				default:
 					throw new ActiveRecordConfigException("Invalid type $type!");
