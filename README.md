@@ -52,8 +52,6 @@ And now add some configs:
     //...
     const KEY_SOME = "some";
     //...
-    const DEFAULT_SOME = "some";
-    //...
     /**
      * @var array
      */
@@ -63,14 +61,29 @@ And now add some configs:
      //...
 ```
 
+You can define a default value, if the value is empty:
+```php
+    //...
+    const DEFAULT_SOME = "some";
+    //...
+    self::KEY_SOME => [ self::TYPE_STRING, self::DEFAULT_SOME ]
+    //...
+```
+
+If you use the JSON datatype, you can decide if you want assoc objects or not:
+```php
+    //...
+	self::KEY_SOME => [ self::TYPE_JSON, self::DEFAULT_SOME, true ]
+    //...
+```
+
 You can now access your config like `Config::getField(Config::KEY_SOME)` and set it like `Config::setField(Config::KEY_SOME, "some")`.
 If you need to remove a config, do `Config::removeField(Config::KEY_SOME)`.
 
 You can get all configs by `Config::getFields()` and set by `Config::setFields(array $fields)`.
 
-Internally all values are stored as strings and will casted with appropriates methods.
-You can define a default value, if the value is `null`.
-
+Internally all values are stored as strings and will be mapped with appropriates datatype to a PHP datatype.
+    
 It exists the follow datatypes:
 
 | Datatype       | PHP type   |
