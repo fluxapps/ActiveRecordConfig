@@ -98,8 +98,11 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 */
 	public static final function getField(/*string*/
 		$name) {
-		if (isset(static::$fields[$name]) && is_array(static::$fields[$name]) && count(static::$fields[$name]) >= 2) {
+		if (isset(static::$fields[$name])) {
 			$field = static::$fields[$name];
+			if (!is_array($field)) {
+				$field = [ $field ];
+			}
 
 			$type = $field[0];
 			$default_value = $field[1];
@@ -147,8 +150,11 @@ abstract class ActiveRecordConfig extends ActiveRecord {
 	 */
 	public static final function setField(/*string*/
 		$name, $value)/*: void*/ {
-		if (isset(static::$fields[$name]) && is_array(static::$fields[$name]) && count(static::$fields[$name]) >= 2) {
+		if (isset(static::$fields[$name])) {
 			$field = static::$fields[$name];
+			if (!is_array($field)) {
+				$field = [ $field ];
+			}
 
 			$type = $field[0];
 
