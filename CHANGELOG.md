@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.9.4]
+- Fix on some strange PHP versions
+
 ## [0.9.3]
 - Fixes
 
