@@ -99,6 +99,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 						break;
 
 					case ($cmd === self::CMD_CONFIGURE):
+						reset(static::$tabs);
 						$this->configure(key(static::$tabs));
 						break;
 
