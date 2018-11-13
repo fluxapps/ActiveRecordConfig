@@ -27,7 +27,7 @@ If you deliver your plugin, the plugin has it's own copy of this library and the
 
 Tip: Because of multiple autoloaders of plugins, it could be, that different versions of this library exists and suddenly your plugin use an older or a newer version of an other plugin!
 
-So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger)
+So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger) in your plugin.
 
 #### Use config
 Declare your config class basically like follow:
