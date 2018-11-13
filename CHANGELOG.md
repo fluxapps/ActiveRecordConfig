@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.10.0]
+- getDefaultValue
+
 ## [0.9.4]
 - Fix on some strange PHP versions
 

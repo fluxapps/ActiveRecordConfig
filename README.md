@@ -25,7 +25,9 @@ And run a `composer install`.
 
 If you deliver your plugin, the plugin has it's own copy of this library and the user doesn't need to install the library.
 
-Hint: Because of multiple autoloaders of plugins, it could be, that different versions of this library exists and suddenly your plugin use an old version of an other plugin! So you should keep up to date your plugin with `composer update`.
+Tip: Because of multiple autoloaders of plugins, it could be, that different versions of this library exists and suddenly your plugin use an older or a newer version of an other plugin!
+
+So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger) in your plugin.
 
 #### Use config
 Declare your config class basically like follow:
@@ -56,7 +58,7 @@ And now add some configs:
      * @var array
      */
      protected static $fields = [
-		self::KEY_SOME => [ self::TYPE_STRING, self::DEFAULT_SOME ]
+		self::KEY_SOME => self::TYPE_STRING
      ];
      //...
 ```
@@ -68,6 +70,18 @@ You can define a default value, if the value is empty:
     //...
     self::KEY_SOME => [ self::TYPE_STRING, self::DEFAULT_SOME ]
     //...
+```
+Otherwise you can also get the default value by implement the function `getDefaultValue`, if it should be complexer:
+```php
+    /**
+     * @inheritdoc
+     */
+    protected static function getDefaultValue(/*string*/ $name, /*int*/$type, $default_value) {
+        switch ($name) {
+            default:
+                return $default_value;
+        }
+    }
 ```
 
 If you use the JSON datatype, you can decide if you want assoc objects or not:
@@ -348,7 +362,7 @@ If you want development in this library you should install this library like fol
 
 Start at your ILIAS root directory
 ```bash
-mkdir -p Customizing/global/plugins/Libraries
-cd Customizing/global/plugins/Libraries
+mkdir -p Customizing/global/libraries
+cd Customizing/global/libraries
 git clone -b develop git@git.studer-raimann.ch:ILIAS/Plugins/ActiveRecordConfig.git ActiveRecordConfig
 ```
