@@ -58,7 +58,7 @@ And now add some configs:
      * @var array
      */
      protected static $fields = [
-		self::KEY_SOME => [ self::TYPE_STRING, self::DEFAULT_SOME ]
+		self::KEY_SOME => self::TYPE_STRING
      ];
      //...
 ```
@@ -70,6 +70,18 @@ You can define a default value, if the value is empty:
     //...
     self::KEY_SOME => [ self::TYPE_STRING, self::DEFAULT_SOME ]
     //...
+```
+Otherwise you can also get the default value by implement the function `getDefaultValue`, if it should be complexer:
+```php
+    /**
+     * @inheritdoc
+     */
+    protected static function getDefaultValue(/*string*/ $name, /*int*/$type, $default_value) {
+        switch ($name) {
+            default:
+                return $default_value;
+        }
+    }
 ```
 
 If you use the JSON datatype, you can decide if you want assoc objects or not:
