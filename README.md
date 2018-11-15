@@ -143,22 +143,13 @@ use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
 class ConfigFormGUI extends ActiveRecordConfigFormGUI {
     //...
     const PLUGIN_CLASS_NAME = ilXPlugin::class;
+    const CONFIG_CLASS_NAME = Config::class;
     
     /**
      * @inheritdoc
      */
-    protected function initForm()/*: void*/ {
-        parent::initForm();
-        
+    protected function initFields()/*: void*/ {
         // TODO: Fill your config form
-    }
-
-
-    /**
-     * @inheritdoc
-     */
-    public function updateConfig()/*: void*/ {
-        // TODO: Update your config
     }
 }
 ```
