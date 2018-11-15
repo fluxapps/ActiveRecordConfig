@@ -338,6 +338,7 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\X\Config\C
 ### Dependencies
 * PHP >=5.6
 * [composer](https://getcomposer.org)
+* [srag/custominputguis](https://packagist.org/packages/srag/custominputguis)
 * [srag/dic](https://packagist.org/packages/srag/dic)
 
 Please use it for further development!

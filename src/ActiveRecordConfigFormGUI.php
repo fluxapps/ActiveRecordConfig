@@ -3,7 +3,7 @@
 namespace srag\ActiveRecordConfig;
 
 use srag\ActiveRecordConfig\Exception\ActiveRecordConfigException;
-use srag\ActiveRecordConfig\PropertyForm\PropertyFormGUI;
+use srag\CustomInputGUIs\PropertyFormGUI\PropertyFormGUI;
 
 /**
  * Class ActiveRecordConfigFormGUI
