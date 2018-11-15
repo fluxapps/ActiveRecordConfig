@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.11.2]
+- Move PropertyFormGUI to CustomInputGUIs
+
 ## [0.11.1]
 - Fix and improvment PropertyForm
 
