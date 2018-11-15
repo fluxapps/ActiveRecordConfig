@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.11.1]
+- Fix and improvment PropertyForm
+
 ## [0.11.0]
 - New PropertyForm
 

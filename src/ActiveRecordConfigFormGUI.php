@@ -45,7 +45,7 @@ abstract class ActiveRecordConfigFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected final function getValue(/*string*/
+	protected function getValue(/*string*/
 		$key) {
 		return (static::CONFIG_CLASS_NAME)::getField($key);
 	}
@@ -54,11 +54,7 @@ abstract class ActiveRecordConfigFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected final function initCommands()/*: void*/ {
-		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
-
-		$this->setTitle($this->txt($this->tab_id));
-
+	protected function initCommands()/*: void*/ {
 		$this->addCommandButton(ActiveRecordConfigGUI::CMD_UPDATE_CONFIGURE . "_" . $this->tab_id, $this->txt("save"));
 	}
 
@@ -66,17 +62,15 @@ abstract class ActiveRecordConfigFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected final function initItems()/*: void*/ {
-		$this->checkConfigClassNameConst();
-
-		parent::initItems();
+	protected function initTitle()/*: void*/ {
+		$this->setTitle($this->txt($this->tab_id));
 	}
 
 
 	/**
 	 * @inheritdoc
 	 */
-	protected final function setValue(/*string*/
+	protected function setValue(/*string*/
 		$key, $value)/*: void*/ {
 		return (static::CONFIG_CLASS_NAME)::setField($key, $value);
 	}
@@ -92,18 +86,10 @@ abstract class ActiveRecordConfigFormGUI extends PropertyFormGUI {
 
 
 	/**
-	 * @inheritdoc
-	 */
-	public final function updateForm()/*: void*/ {
-		parent::updateForm();
-	}
-
-
-	/**
 	 * @throws ActiveRecordConfigException Your class needs to implement the CONFIG_CLASS_NAME constant!
 	 */
 	private final function checkConfigClassNameConst()/*: void*/ {
-		if (!defined("static::CONFIG_CLASS_NAME") || empty(static::CONFIG_CLASS_NAME)) {
+		if (!defined("static::CONFIG_CLASS_NAME") || empty(static::CONFIG_CLASS_NAME) || !class_exists(static::CONFIG_CLASS_NAME)) {
 			throw new ActiveRecordConfigException("Your class needs to implement the CONFIG_CLASS_NAME constant!");
 		}
 	}
