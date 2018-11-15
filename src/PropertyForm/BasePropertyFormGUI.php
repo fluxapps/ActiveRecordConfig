@@ -38,10 +38,20 @@ abstract class BasePropertyFormGUI extends ilPropertyFormGUI {
 	/**
 	 *
 	 */
-	protected final function initForm()/*: void*/ {
+	protected function initAction()/*: void*/ {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
+	}
+
+
+	/**
+	 *
+	 */
+	protected final function initForm()/*: void*/ {
+		$this->initAction();
 
 		$this->initCommands();
+
+		$this->initTitle();
 
 		$this->initItems();
 	}
@@ -58,6 +68,13 @@ abstract class BasePropertyFormGUI extends ilPropertyFormGUI {
 	 *
 	 */
 	protected abstract function initItems()/*: void*/
+	;
+
+
+	/**
+	 *
+	 */
+	protected abstract function initTitle()/*: void*/
 	;
 
 

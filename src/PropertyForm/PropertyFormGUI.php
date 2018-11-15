@@ -6,6 +6,8 @@ use ilCheckboxInputGUI;
 use ilDateTimeInputGUI;
 use ilFormPropertyGUI;
 use ilFormSectionHeaderGUI;
+use ilRadioGroupInputGUI;
+use ilRadioOption;
 use srag\ActiveRecordConfig\Exception\ActiveRecordConfigException;
 
 /**
@@ -66,6 +68,61 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 
 
 	/**
+	 * @param array                  $fields
+	 * @param self|ilFormPropertyGUI $_this
+	 *
+	 * @throws ActiveRecordConfigException $fields needs to be an array!
+	 * @throws ActiveRecordConfigException Class $class not exists!
+	 * @throws ActiveRecordConfigException $item muss be an instance of ilFormPropertyGUI or ilFormSectionHeaderGUI!
+	 * @throws ActiveRecordConfigException $options needs to be an array!
+	 */
+	private final function getFields(array $fields, $_this)/*: void*/ {
+		if (!is_array($fields)) {
+			throw new ActiveRecordConfigException("\$fields needs to be an array!");
+		}
+
+		foreach ($fields as $key => $field) {
+			if (!is_array($field)) {
+				throw new ActiveRecordConfigException("\$fields needs to be an array!");
+			}
+			if (!class_exists($field[self::PROPERTY_CLASS])) {
+				throw new ActiveRecordConfigException("Class " . $field[self::PROPERTY_CLASS] . " not exists!");
+			}
+
+			$item = $this->getItem($key, $field);
+
+			if (!($item instanceof ilFormPropertyGUI || $item instanceof ilFormSectionHeaderGUI)) {
+				throw new ActiveRecordConfigException("\$item muss be an instance of ilFormPropertyGUI or ilFormSectionHeaderGUI!");
+			}
+
+			if ($item instanceof ilRadioGroupInputGUI) {
+				if (!is_array($field[self::PROPERTY_OPTIONS])) {
+					throw new ActiveRecordConfigException("\$options needs to be an array!");
+				}
+
+				foreach ($field[self::PROPERTY_OPTIONS] as $option_key => $items) {
+					$option = new ilRadioOption($this->txt($option_key), $option_key);
+
+					$this->getFields($items, $option);
+
+					$item->addOption($option);
+				}
+			}
+
+			if (is_array($field[self::PROPERTY_SUBITEMS])) {
+				$this->getFields($field[self::PROPERTY_SUBITEMS], $item);
+			}
+
+			if ($_this instanceof self) {
+				$_this->addItem($item);
+			} else {
+				$_this->addSubItem($item);
+			}
+		}
+	}
+
+
+	/**
 	 * @param string $key
 	 * @param array  $field
 	 *
@@ -79,13 +136,37 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 		 */
 		$item = new $field[self::PROPERTY_CLASS]($this->txt($key), $key);
 
-		$this->setValueToItem($item, $value);
-
 		$this->setPropertiesToItem($item, $field);
+
+		$this->setValueToItem($item, $value);
 
 		$this->items_cache[$key] = $item;
 
 		return $item;
+	}
+
+
+	/**
+	 * @param array $fields
+	 */
+	private final function getValueFromItems(array $fields)/*: void*/ {
+		foreach ($fields as $key => $field) {
+			$item = $this->items_cache[$key];
+
+			$value = $this->getValueFromItem($item);
+
+			$this->setValue($key, $value);
+
+			if ($item instanceof ilRadioGroupInputGUI) {
+				foreach ($field[self::PROPERTY_OPTIONS] as $option_key => $items) {
+					$this->getValueFromItems($items);
+				}
+			}
+
+			if (is_array($field[self::PROPERTY_SUBITEMS])) {
+				$this->getValueFromItems($field[self::PROPERTY_SUBITEMS]);
+			}
+		}
 	}
 
 
@@ -101,7 +182,11 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 			if ($item instanceof ilDateTimeInputGUI) {
 				return $item->getDate();
 			} else {
-				return $item->getValue();
+				if ($item->getMulti()) {
+					return $item->getMultiValues();
+				} else {
+					return $item->getValue();
+				}
 			}
 		}
 	}
@@ -110,51 +195,10 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function initItems()/*: void*/ {
+	protected final function initItems()/*: void*/ {
 		$this->initFields();
 
-		$this->handleFields();
-	}
-
-
-	/**
-	 * @throws ActiveRecordConfigException $fields needs to be an array!
-	 * @throws ActiveRecordConfigException Class $class not exists!
-	 * @throws ActiveRecordConfigException $item muss be an instance of ilFormPropertyGUI or ilFormSectionHeaderGUI!
-	 */
-	private final function handleFields()/*: void*/ {
-		if (!is_array($this->fields)) {
-			throw new ActiveRecordConfigException("\$fields needs to be an array!");
-		}
-
-		foreach ($this->fields as $key => $field) {
-			if (!is_array($field)) {
-				throw new ActiveRecordConfigException("\$fields needs to be an array!");
-			}
-			if (!class_exists($field[self::PROPERTY_CLASS])) {
-				throw new ActiveRecordConfigException("Class " . $field[self::PROPERTY_CLASS] . " not exists!");
-			}
-
-			$item = $this->getItem($key, $field);
-
-			if (!($item instanceof ilFormPropertyGUI || $item instanceof ilFormSectionHeaderGUI)) {
-				throw new ActiveRecordConfigException("\$item muss be an instance of ilFormPropertyGUI or ilFormSectionHeaderGUI!");
-			}
-
-			if (is_array($field[self::PROPERTY_SUBITEMS])) {
-				foreach ($field[self::PROPERTY_SUBITEMS] as $sub_key => $sub_field) {
-					if (!is_array($sub_field)) {
-						throw new ActiveRecordConfigException("\$fields needs to be an array!");
-					}
-
-					$sub_item = $this->getItem($sub_key, $sub_field);
-
-					$item->addSubItem($sub_item);
-				}
-			}
-
-			$this->addItem($item);
-		}
+		$this->getFields($this->fields, $this);
 	}
 
 
@@ -178,14 +222,21 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 					break;
 
 				case self::PROPERTY_OPTIONS:
-					$item->setOptions($property_value);
+					if (!($item instanceof ilRadioGroupInputGUI)) {
+						$item->setOptions($property_value);
+					}
 					break;
 
 				case self::PROPERTY_REQUIRED:
 					$item->setRequired($property_value);
 					break;
 
+				case self::PROPERTY_CLASS:
+				case self::PROPERTY_SUBITEMS:
+					break;
+
 				default:
+					$item->{ucfirst($property_key)}($property_value);
 					break;
 			}
 		}
@@ -224,23 +275,7 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 	 * @inheritdoc
 	 */
 	public function updateForm()/*: void*/ {
-		foreach ($this->fields as $key => $field) {
-			$item = $this->items_cache[$key];
-
-			$value = $this->getValueFromItem($item);
-
-			$this->setValue($key, $value);
-
-			if (is_array($field[self::PROPERTY_SUBITEMS])) {
-				foreach ($field[self::PROPERTY_SUBITEMS] as $sub_key => $sub_field) {
-					$sub_item = $this->items_cache[$sub_key];
-
-					$sub_value = $this->getValueFromItem($sub_item);
-
-					$this->setValue($sub_key, $sub_value);
-				}
-			}
-		}
+		$this->getValueFromItems($this->fields);
 	}
 
 
@@ -250,7 +285,7 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 	 * @return mixed
 	 */
 	protected abstract function getValue(/*string*/
-		$key);;
+		$key);
 
 
 	/**
