@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.11.0]
+- New PropertyForm
+
 ## [0.10.0]
 - getDefaultValue
 
