@@ -80,8 +80,13 @@ abstract class ActiveRecordConfigFormGUI extends PropertyFormGUI {
 	 * @inheritdoc
 	 */
 	protected final function txt(/*string*/
-		$key)/*: string*/ {
-		return self::plugin()->translate($key, ActiveRecordConfigGUI::LANG_MODULE_CONFIG);
+		$key,/*?string*/
+		$default = NULL)/*: string*/ {
+		if ($default !== NULL) {
+			return self::plugin()->translate($key, ActiveRecordConfigGUI::LANG_MODULE_CONFIG, [], true, "", $default);
+		} else {
+			return self::plugin()->translate($key, ActiveRecordConfigGUI::LANG_MODULE_CONFIG);
+		}
 	}
 
 
