@@ -14,6 +14,10 @@ use srag\CustomInputGUIs\TableGUI\BaseTableGUI;
 abstract class ActiveRecordConfigTableGUI extends BaseTableGUI {
 
 	/**
+	 * @var ActiveRecordConfigGUI
+	 */
+	protected $parent_obj;
+	/**
 	 * @var string
 	 */
 	protected $tab_id;
@@ -32,6 +36,14 @@ abstract class ActiveRecordConfigTableGUI extends BaseTableGUI {
 		$this->tab_id = $tab_id;
 
 		parent::__construct($parent, $parent_cmd);
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function initCommands()/*: void*/ {
+
 	}
 
 
