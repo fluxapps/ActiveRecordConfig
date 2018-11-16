@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.12.0]
+- BaseTableGUI
+
 ## [0.11.6]
 - Fix
 
