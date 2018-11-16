@@ -42,22 +42,6 @@ abstract class ActiveRecordConfigTableGUI extends BaseTableGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function initCommands()/*: void*/ {
-
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	protected function initExport()/*: void*/ {
-
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
 	public function initFilter()/*: void*/ {
 		$this->setFilterCommand(ActiveRecordConfigGUI::CMD_APPLY_FILTER . "_" . $this->tab_id);
 		$this->setResetCommand(ActiveRecordConfigGUI::CMD_RESET_FILTER . "_" . $this->tab_id);
