@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.13.1]
+- New OutputInterface
+
 ## [0.13.0]
 - TableGUI
 
