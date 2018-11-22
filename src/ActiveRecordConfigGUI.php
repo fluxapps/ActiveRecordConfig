@@ -179,7 +179,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 		$gui = $this->getConfigurationGUI($tab_id);
 
-		self::plugin()->output($gui);
+		self::output()->output($gui);
 	}
 
 
@@ -199,7 +199,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 		$form->setValuesByPost();
 
 		if (!$form->checkInput()) {
-			self::plugin()->output($form);
+			self::output()->output($form);
 
 			return;
 		}
