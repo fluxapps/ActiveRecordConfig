@@ -196,15 +196,11 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 		$form = $this->getConfigurationFormGUI(static::$tabs[$tab_id], $tab_id);
 
-		$form->setValuesByPost();
-
-		if (!$form->checkInput()) {
+		if (!$form->storeForm()) {
 			self::output()->output($form);
 
 			return;
 		}
-
-		$form->updateForm();
 
 		ilUtil::sendSuccess($this->txt($tab_id . "_saved"), true);
 
