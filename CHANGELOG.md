@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.13.2]
+- Some improvments in PropertyFormGUI
+
 ## [0.13.1]
 - New OutputInterface
 
