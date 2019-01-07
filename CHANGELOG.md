@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.14.0]
+- ActiveRecordObjectFormGUI
+
 ## [0.13.4]
 - Use ConfigPropertyFormGUI
 
