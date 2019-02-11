@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.14.3]
+  - Fix initFilterFields
+
 ## [0.14.2]
 - Fixes
 
