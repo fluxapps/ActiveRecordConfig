@@ -344,7 +344,7 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\X\Config\C
 Please use it for further development!
 
 ### Adjustment suggestions
-* Adjustment suggestions by pull requests on https://git.studer-raimann.ch/ILIAS/Plugins/ActiveRecordConfig/tree/develop
+* Adjustment suggestions by pull
 * Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/ACCONF
 * Bug reports under https://jira.studer-raimann.ch/projects/ACCONF
 * For external users you can report it at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_ACCONF
