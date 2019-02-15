@@ -152,7 +152,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 * @return string
 	 */
 	public final function getCmdForTab(/*string*/
-		$tab_id)/*: void*/ {
+		$tab_id)/*: string*/ {
 		return self::CMD_CONFIGURE . "_" . $tab_id;
 	}
 

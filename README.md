@@ -264,7 +264,7 @@ There exists some help functions in `ilXConfigGUI`:
  *
  * @return string
  */
-$this->getCmdForTab(/*string*/ $tab_id)/*: void*/;
+$this->getCmdForTab(/*string*/ $tab_id)/*: string*/;
 
 /**
  * @param string $tab_id
