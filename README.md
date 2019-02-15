@@ -177,7 +177,7 @@ class ConfigTableGUI extends ActiveRecordConfigTableGUI {
     /**
      *
      */
-    public function initFilter() {
+    public function initFilter()/*: void*/ {
         parent::initFilter();
         
         // TODO: Set your config filter
