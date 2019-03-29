@@ -1,7 +1,10 @@
 # Changelog
 
+## [0.15.0]
+- Supports an custom command or other gui class as tab
+
 ## [0.14.3]
-  - Fix initFilterFields
+- Fix initFilterFields
 
 ## [0.14.2]
 - Fixes
