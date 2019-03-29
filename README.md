@@ -133,7 +133,7 @@ class ilXConfigGUI extends ActiveRecordConfigGUI {
 
 Declare in `$tabs` your tabs. The key is the tab id and the value your config tab class.
 
-A config tab class can be either a property form `ActiveRecordConfigFormGUI` or `ActiveRecordObjectFormGUI`:
+A config tab class can be either `ilCtrl` flow class (`self::TAB_CONFIGURATION => [Ctrl::class, "cmd]`) or a property form `ActiveRecordConfigFormGUI` or `ActiveRecordObjectFormGUI`:
 ```php
 //...
 namespace srag\Plugins\X\Config
