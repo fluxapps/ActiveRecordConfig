@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.15.1]
+- Fix reset offset
+
 ## [0.15.0]
 - Supports an custom command or other gui class as tab
 
