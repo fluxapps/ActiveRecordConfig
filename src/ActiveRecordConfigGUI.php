@@ -169,7 +169,9 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	 * @param string $tab_id
 	 * @param string $cmd
 	 */
-	protected function addTab(string $tab_id, string $cmd)/*: void*/ {
+	protected function addTab(/*string*/
+		$tab_id,/*string*/
+		$cmd)/*: void*/ {
 		self::dic()->tabs()->addTab($tab_id, $this->txt($tab_id), self::dic()->ctrl()->getLinkTarget($this, $cmd));
 	}
 
