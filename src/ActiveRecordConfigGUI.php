@@ -154,14 +154,23 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 	/**
 	 * @internal
 	 */
-	private final function setTabs() {
+	private final function setTabs()/*: void*/ {
 		foreach (static::$tabs as $tab_id => $config_gui_class_name) {
 			if (in_array($config_gui_class_name, static::$custom_commands)) {
-				self::dic()->tabs()->addTab($tab_id, $this->txt($tab_id), self::dic()->ctrl()->getLinkTarget($this, $config_gui_class_name));
+				$this->addTab($tab_id, $config_gui_class_name);
 			} else {
-				self::dic()->tabs()->addTab($tab_id, $this->txt($tab_id), self::dic()->ctrl()->getLinkTarget($this, $this->getCmdForTab($tab_id)));
+				$this->addTab($tab_id, $tab_id);
 			}
 		}
+	}
+
+
+	/**
+	 * @param string $tab_id
+	 * @param string $cmd
+	 */
+	protected function addTab(string $tab_id, string $cmd)/*: void*/ {
+		self::dic()->tabs()->addTab($tab_id, $this->txt($tab_id), self::dic()->ctrl()->getLinkTarget($this, $cmd));
 	}
 
 
