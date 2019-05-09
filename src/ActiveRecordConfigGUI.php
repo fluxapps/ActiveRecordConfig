@@ -159,7 +159,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 			if (in_array($config_gui_class_name, static::$custom_commands)) {
 				$this->addTab($tab_id, $config_gui_class_name);
 			} else {
-				$this->addTab($tab_id, $tab_id);
+				$this->addTab($tab_id, $this->getCmdForTab($tab_id));
 			}
 		}
 	}
