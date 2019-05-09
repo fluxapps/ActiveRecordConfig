@@ -95,6 +95,13 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 			case "":
 				switch (true) {
 					case (in_array($cmd, static::$custom_commands)):
+						/*foreach (static::$tabs as $tab_id => $config_gui_class_name) {
+							if ($config_gui_class_name === $cmd) {
+								self::dic()->tabs()->activateTab($tab_id);
+								break;
+							}
+						}*/
+
 						$this->{$cmd}();
 						break;
 
@@ -104,6 +111,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 						$tab_id = key(static::$tabs);
 
 						if (in_array(static::$tabs[$tab_id], static::$custom_commands)) {
+							self::dic()->tabs()->activateTab($tab_id);
+
 							$this->{$tab_id};
 						} else {
 							$this->configure($tab_id);
@@ -114,6 +123,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 						$tab_id = substr($cmd, strlen($this->getCmdForTab("")));
 
 						if (in_array(static::$tabs[$tab_id], static::$custom_commands)) {
+							self::dic()->tabs()->activateTab($tab_id);
+
 							$this->{$tab_id};
 						} else {
 							$this->configure($tab_id);
@@ -145,6 +156,13 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 				break;
 
 			default:
+				/*foreach (static::$tabs as $tab_id => $config_gui_class_name) {
+					if ($config_gui_class_name[1] === $cmd) {
+						self::dic()->tabs()->activateTab($tab_id);
+						break;
+					}
+				}*/
+
 				self::dic()->ctrl()->forwardCommand(new $next_class());
 				break;
 		}
@@ -293,6 +311,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 		switch (true) {
 			case is_array($config_gui_class_name):
+				$this->addTab($tab_id, $config_gui_class_name[1]);
 				self::dic()->ctrl()->redirect(new $config_gui_class_name[0](), $config_gui_class_name[1]);
 				break;
 
