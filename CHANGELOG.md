@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.16.1]
+- Fix
+
 ## [0.16.0]
 - `addTab` overridable
 
