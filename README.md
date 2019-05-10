@@ -170,7 +170,7 @@ class ConfigTableGUI extends ActiveRecordConfigTableGUI {
     /**
      * @inheritdoc
      */
-    protected function getColumnValue(/*string*/ $column, /*array*/ $row, /*bool*/ $raw_export = false): string {
+    protected function getColumnValue(/*string*/ $column, /*array*/ $row, /*int*/ $format = 0): string {
 		switch ($column) {
 			default:
 				$column = $row[$column];
