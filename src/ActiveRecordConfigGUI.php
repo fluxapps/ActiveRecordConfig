@@ -186,6 +186,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
                 $this->addTab($tab_id, $this->getCmdForTab($tab_id));
             }
         }
+
+        self::dic()->locator()->addItem(self::plugin()->getPluginObject()->getPluginName(), self::dic()->ctrl()->getLinkTarget($this));
     }
 
 
