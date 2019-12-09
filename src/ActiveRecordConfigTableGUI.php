@@ -7,11 +7,11 @@ use srag\CustomInputGUIs\TableGUI\TableGUI;
 /**
  * Class ActiveRecordConfigTableGUI
  *
- * @package srag\ActiveRecordConfig
+ * @package    srag\ActiveRecordConfig
  *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @deprecated
+ * @deprecated Please use TableGUI from CustomInputGUIs instead
  */
 abstract class ActiveRecordConfigTableGUI extends TableGUI
 {
