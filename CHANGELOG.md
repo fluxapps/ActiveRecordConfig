@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.17.0]
+- Deprecated `ActiveRecordConfigGUI`
+
 ## [0.16.4]
 - Add plugin to locator
 

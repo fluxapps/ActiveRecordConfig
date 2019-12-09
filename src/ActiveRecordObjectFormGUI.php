@@ -12,16 +12,22 @@ use srag\CustomInputGUIs\PropertyFormGUI\ObjectPropertyFormGUI;
  * @package srag\ActiveRecordConfig
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ *
+ * @deprecated
  */
 abstract class ActiveRecordObjectFormGUI extends ObjectPropertyFormGUI
 {
 
     /**
      * @var string
+     *
+     * @deprecated
      */
     const LANG_MODULE = ActiveRecordConfigGUI::LANG_MODULE_CONFIG;
     /**
      * @var string
+     *
+     * @deprecated
      */
     protected $tab_id;
 
@@ -32,6 +38,8 @@ abstract class ActiveRecordObjectFormGUI extends ObjectPropertyFormGUI
      * @param object                            $parent
      * @param ilObject|ActiveRecord|object|null $object
      * @param bool                              $object_auto_store
+     *
+     * @deprecated
      */
     public function __construct(
         $parent,
@@ -47,6 +55,8 @@ abstract class ActiveRecordObjectFormGUI extends ObjectPropertyFormGUI
 
     /**
      * @inheritdoc
+     *
+     * @deprecated
      */
     protected function initCommands()/*: void*/
     {
@@ -56,6 +66,8 @@ abstract class ActiveRecordObjectFormGUI extends ObjectPropertyFormGUI
 
     /**
      * @inheritdoc
+     *
+     * @deprecated
      */
     protected function initId()/*: void*/
     {
@@ -65,6 +77,8 @@ abstract class ActiveRecordObjectFormGUI extends ObjectPropertyFormGUI
 
     /**
      * @inheritdoc
+     *
+     * @deprecated
      */
     protected function initTitle()/*: void*/
     {

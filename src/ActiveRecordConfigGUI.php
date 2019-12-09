@@ -13,6 +13,8 @@ use srag\DIC\DICTrait;
  * @package srag\ActiveRecordConfig
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ *
+ * @deprecated
  */
 abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
 {
@@ -22,48 +24,66 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @var string
      *
      * @internal
+     *
+     * @deprecated
      */
     const CMD_APPLY_FILTER = "applyFilter";
     /**
      * @var string
      *
      * @internal
+     *
+     * @deprecated
      */
     const CMD_RESET_FILTER = "resetFilter";
     /**
      * @var string
      *
      * @internal
+     *
+     * @deprecated
      */
     const CMD_CONFIGURE = "configure";
     /**
      * @var string
      *
      * @internal
+     *
+     * @deprecated
      */
     const CMD_UPDATE_CONFIGURE = "updateConfigure";
     /**
      * @var string
+     *
+     * @deprecated
      */
     const LANG_MODULE_CONFIG = "config";
     /**
      * @var string
+     *
+     * @deprecated
      */
     const TAB_CONFIGURATION = "configuration";
     /**
      * @var array
      *
      * @abstract
+     *
+     * @deprecated
      */
     protected static $tabs = [self::TAB_CONFIGURATION => ActiveRecordConfigFormGUI::class];
     /**
      * @var array
+     *
+     * @deprecated
      */
     protected static $custom_commands = [];
 
 
     /**
      * ActiveRecordConfigGUI constructor
+     *
+     * @deprecated
      */
     public function __construct()
     {
@@ -73,6 +93,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
 
     /**
      * @internal
+     *
+     * @deprecated
      */
     public final function executeCommand()
     {
@@ -87,6 +109,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @throws ActiveRecordConfigException Class $config_gui_class_name not extends ActiveRecordConfigFormGUI, ActiveRecordObjectFormGUI or ActiveRecordConfigTableGUI!
      *
      * @internal
+     *
+     * @deprecated
      */
     public final function performCommand(/*string*/
         $cmd
@@ -176,6 +200,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
 
     /**
      * @internal
+     *
+     * @deprecated
      */
     private final function setTabs()/*: void*/
     {
@@ -194,6 +220,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
     /**
      * @param string $tab_id
      * @param string $cmd
+     *
+     * @deprecated
      */
     protected function addTab(/*string*/
         $tab_id,/*string*/
@@ -208,6 +236,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @param string $tab_id
      *
      * @return string
+     *
+     * @deprecated
      */
     public final function getCmdForTab(/*string*/
         $tab_id
@@ -219,6 +249,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
 
     /**
      * @param string $tab_id
+     *
+     * @deprecated
      */
     public final function redirectToTab(/*string*/
         $tab_id
@@ -234,6 +266,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @throws ActiveRecordConfigException Class $config_gui_class_name not extends ActiveRecordConfigFormGUI, ActiveRecordObjectFormGUI or ActiveRecordConfigTableGUI!
      *
      * @internal
+     *
+     * @deprecated
      */
     private final function configure(/*string*/
         $tab_id
@@ -253,6 +287,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @throws ActiveRecordConfigException Class $config_gui_class_name not extends ActiveRecordConfigFormGUI or ActiveRecordObjectFormGUI!
      *
      * @internal
+     *
+     * @deprecated
      */
     private final function updateConfigure(/*string*/
         $tab_id
@@ -280,6 +316,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @throws ActiveRecordConfigException Class $config_form_gui_class_name not extends ActiveRecordConfigTableGUI!
      *
      * @internal
+     *
+     * @deprecated
      */
     private final function applyFilter(/*string*/
         $tab_id
@@ -302,6 +340,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @throws ActiveRecordConfigException Class $config_form_gui_class_name not extends ActiveRecordConfigTableGUI!
      *
      * @internal
+     *
+     * @deprecated
      */
     private final function resetFilter(/*string*/
         $tab_id
@@ -326,6 +366,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @throws ActiveRecordConfigException Class $config_gui_class_name not extends ActiveRecordConfigFormGUI, ActiveRecordObjectFormGUI or ActiveRecordConfigTableGUI!
      *
      * @internal
+     *
+     * @deprecated
      */
     private final function getConfigurationGUI(/*string*/
         $tab_id
@@ -366,6 +408,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @throws ActiveRecordConfigException Class $config_form_gui_class_name not extends ActiveRecordConfigFormGUI or ActiveRecordObjectFormGUI!
      *
      * @internal
+     *
+     * @deprecated
      */
     private final function getConfigurationFormGUI(/*string*/
         $config_form_gui_class_name, /*string*/
@@ -398,6 +442,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @throws ActiveRecordConfigException Class $config_form_gui_class_name not extends ActiveRecordConfigTableGUI!
      *
      * @internal
+     *
+     * @deprecated
      */
     private final function getConfigurationTable(/*string*/
         $config_table_gui_class_name,/*string*/
@@ -423,6 +469,8 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      * @param string $key
      *
      * @return string
+     *
+     * @deprecated
      */
     protected function txt(/*string*/
         $key
