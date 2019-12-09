@@ -10,20 +10,28 @@ use srag\CustomInputGUIs\TableGUI\TableGUI;
  * @package srag\ActiveRecordConfig
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ *
+ * @deprecated
  */
 abstract class ActiveRecordConfigTableGUI extends TableGUI
 {
 
     /**
      * @var string
+     *
+     * @deprecated
      */
     const LANG_MODULE = ActiveRecordConfigGUI::LANG_MODULE_CONFIG;
     /**
      * @var ActiveRecordConfigGUI
+     *
+     * @deprecated
      */
     protected $parent_obj;
     /**
      * @var string
+     *
+     * @deprecated
      */
     protected $tab_id;
 
@@ -34,6 +42,8 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
      * @param ActiveRecordConfigGUI $parent
      * @param string                $parent_cmd
      * @param string                $tab_id
+     *
+     * @deprecated
      */
     public function __construct(
         ActiveRecordConfigGUI $parent, /*string*/
@@ -48,6 +58,8 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
 
     /**
      * @inheritdoc
+     *
+     * @deprecated
      */
     protected function initFilterFields()/*: void*/
     {
@@ -58,6 +70,8 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
 
     /**
      * @inheritdoc
+     *
+     * @deprecated
      */
     protected function initId()/*: void*/
     {
@@ -67,6 +81,8 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
 
     /**
      * @inheritdoc
+     *
+     * @deprecated
      */
     protected function initTitle()/*: void*/
     {

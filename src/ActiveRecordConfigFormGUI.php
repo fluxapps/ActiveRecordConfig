@@ -10,16 +10,22 @@ use srag\CustomInputGUIs\PropertyFormGUI\ConfigPropertyFormGUI;
  * @package srag\ActiveRecordConfig
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ *
+ * @deprecated
  */
 abstract class ActiveRecordConfigFormGUI extends ConfigPropertyFormGUI
 {
 
     /**
      * @var string
+     *
+     * @deprecated
      */
     const LANG_MODULE = ActiveRecordConfigGUI::LANG_MODULE_CONFIG;
     /**
      * @var string
+     *
+     * @deprecated
      */
     protected $tab_id;
 
@@ -29,6 +35,8 @@ abstract class ActiveRecordConfigFormGUI extends ConfigPropertyFormGUI
      *
      * @param ActiveRecordConfigGUI $parent
      * @param string                $tab_id
+     *
+     * @deprecated
      */
     public function __construct(
         ActiveRecordConfigGUI $parent, /*string*/
@@ -42,6 +50,8 @@ abstract class ActiveRecordConfigFormGUI extends ConfigPropertyFormGUI
 
     /**
      * @inheritdoc
+     *
+     * @deprecated
      */
     protected function initCommands()/*: void*/
     {
@@ -51,6 +61,8 @@ abstract class ActiveRecordConfigFormGUI extends ConfigPropertyFormGUI
 
     /**
      * @inheritdoc
+     *
+     * @deprecated
      */
     protected function initId()/*: void*/
     {
@@ -60,6 +72,8 @@ abstract class ActiveRecordConfigFormGUI extends ConfigPropertyFormGUI
 
     /**
      * @inheritdoc
+     *
+     * @deprecated
      */
     protected function initTitle()/*: void*/
     {
