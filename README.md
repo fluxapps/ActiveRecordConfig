@@ -10,17 +10,6 @@ First add the following to your `composer.json` file:
 },
 ```
 
-If your plugin should support ILIAS 5.2 or earlier you need to require some ILIAS core classes like follow in your `composer.json` file:
-```json
-"autoload": {
-    "classmap": [
-      "../../../../../../../Services/ActiveRecord/class.ActiveRecord.php",
-      "../../../../../../../Services/Component/classes/class.ilPluginConfigGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilPropertyFormGUI.php",
-      "../../../../../../../Services/Table/classes/class.ilTable2GUI.php",
-```
-May you need to adjust the relative `ActiveRecord` path
-
 And run a `composer install`.
 
 If you deliver your plugin, the plugin has it's own copy of this library and the user doesn't need to install the library.
