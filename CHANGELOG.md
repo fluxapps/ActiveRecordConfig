@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.17.1]
+- Remove ILIAS 5.2 hints
+
 ## [0.17.0]
 - Deprecated `ActiveRecordConfigGUI`
 
