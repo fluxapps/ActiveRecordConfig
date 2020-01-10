@@ -63,7 +63,7 @@ You can define a default value, if the value is empty:
 Otherwise you can also get the default value by implement the function `getDefaultValue`, if it should be complexer:
 ```php
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected static function getDefaultValue(/*string*/ $name, /*int*/$type, $default_value) {
         switch ($name) {
@@ -135,7 +135,7 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
     const CONFIG_CLASS_NAME = Config::class;
     
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFields()/*: void*/ {
         // TODO: Fill your config form
@@ -157,7 +157,7 @@ class ConfigTableGUI extends ActiveRecordConfigTableGUI {
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getColumnValue(/*string*/ $column, /*array*/ $row, /*int*/ $format = self::DEFAULT_FORMAT): string {
 		switch ($column) {
@@ -171,7 +171,7 @@ class ConfigTableGUI extends ActiveRecordConfigTableGUI {
 
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function getSelectableColumns2(): array {
 		return [];
@@ -179,7 +179,7 @@ class ConfigTableGUI extends ActiveRecordConfigTableGUI {
 
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
     protected function initData()/*: void*/ {
         // TODO: Set your config data
