@@ -57,7 +57,7 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @deprecated
      */
@@ -69,7 +69,7 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @deprecated
      */
@@ -80,7 +80,7 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @deprecated
      */
