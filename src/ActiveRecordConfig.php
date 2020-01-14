@@ -68,7 +68,7 @@ abstract class ActiveRecordConfig extends ActiveRecord
 
 
     /**
-     * @return string
+     * @inheritDoc
      *
      * @access protected
      */
@@ -79,7 +79,7 @@ abstract class ActiveRecordConfig extends ActiveRecord
 
 
     /**
-     * @return string
+     * @inheritDoc
      *
      * @access protected
      *
