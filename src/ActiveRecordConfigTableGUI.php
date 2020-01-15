@@ -45,11 +45,8 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
      *
      * @deprecated
      */
-    public function __construct(
-        ActiveRecordConfigGUI $parent, /*string*/
-        $parent_cmd, /*string*/
-        $tab_id
-    ) {
+    public function __construct(ActiveRecordConfigGUI $parent, string $parent_cmd, string $tab_id)
+    {
         $this->tab_id = $tab_id;
 
         parent::__construct($parent, $parent_cmd);

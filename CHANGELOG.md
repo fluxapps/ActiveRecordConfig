@@ -1,5 +1,9 @@
 # Changelog
 
+## [x]
+- Refactor
+- Min PHP 7.0
+
 ## [0.17.1]
 - Remove ILIAS 5.2 hints
 
