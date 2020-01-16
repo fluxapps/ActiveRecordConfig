@@ -338,7 +338,7 @@ final class Repository
 
     /**
      * @param string     $name
-     * @param mixed|null $default_value
+     * @param mixed $default_value
      *
      * @return mixed
      */
@@ -384,7 +384,7 @@ final class Repository
 
     /**
      * @param string $name
-     * @param string $value
+     * @param mixed  $value
      */
     protected function setStringValue(string $name, $value)/*: void*/
     {
@@ -406,7 +406,7 @@ final class Repository
 
     /**
      * @param string $name
-     * @param int    $value
+     * @param mixed  $value
      */
     protected function setIntegerValue(string $name, $value)/*: void*/
     {
@@ -428,7 +428,7 @@ final class Repository
 
     /**
      * @param string $name
-     * @param float  $value
+     * @param mixed  $value
      */
     protected function setFloatValue(string $name, $value)/*: void*/
     {
@@ -450,7 +450,7 @@ final class Repository
 
     /**
      * @param string $name
-     * @param bool   $value
+     * @param mixed  $value
      */
     protected function setBooleanValue(string $name, $value)/*: void*/
     {
@@ -535,7 +535,7 @@ final class Repository
     /**
      * @param string     $name
      * @param bool       $assoc
-     * @param mixed|null $default_value
+     * @param mixed $default_value
      *
      * @return mixed
      */
