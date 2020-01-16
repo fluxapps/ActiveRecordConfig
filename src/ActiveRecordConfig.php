@@ -31,6 +31,10 @@ abstract class ActiveRecordConfig extends Config
      * @abstract
      */
     protected static $fields = [];
+    /**
+     * @var bool
+     */
+    protected static $init = false;
 
 
     /**
@@ -40,7 +44,11 @@ abstract class ActiveRecordConfig extends Config
      */
     public static function getTableName() : string
     {
-        self::config()->withTableName(static::TABLE_NAME)->withFields(static::$fields);
+        if (!self::$init) {
+            self::$init = true;
+
+            self::config()->withTableName(static::TABLE_NAME)->withFields(static::$fields);
+        }
 
         return parent::getTableName();
     }
