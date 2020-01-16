@@ -77,9 +77,6 @@ abstract class ActiveRecordConfig extends Config
      *
      * @return mixed
      *
-     * @throws ActiveRecordConfigException Invalid type $type!
-     * @throws ActiveRecordConfigException Invalid field $name!
-     *
      * @deprecated
      */
     public static function getField(string $name)
@@ -95,16 +92,13 @@ abstract class ActiveRecordConfig extends Config
      *
      * @return array [ [ "name" => value ], ... ]
      *
-     * @throws ActiveRecordConfigException Invalid type $type!
-     * @throws ActiveRecordConfigException Invalid field $name!
-     *
      * @deprecated
      */
     public static function getFields() : array
     {
         self::getTableName();
 
-        return self::config()->getFields_();
+        return self::config()->getFields();
     }
 
 
@@ -127,9 +121,6 @@ abstract class ActiveRecordConfig extends Config
      * @param string $name
      * @param mixed  $value
      *
-     * @throws ActiveRecordConfigException Invalid type $type!
-     * @throws ActiveRecordConfigException Invalid field $name!
-     *
      * @deprecated
      */
     public static function setField(string $name, $value)/*: void*/
@@ -145,9 +136,6 @@ abstract class ActiveRecordConfig extends Config
      *
      * @param array $fields        [ [ "name" => value ], ... ]
      * @param bool  $remove_exists Delete all exists name before
-     *
-     * @throws ActiveRecordConfigException Invalid type $type!
-     * @throws ActiveRecordConfigException Invalid field $name!
      *
      * @deprecated
      */

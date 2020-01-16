@@ -5,7 +5,6 @@ namespace srag\ActiveRecordConfig\Config;
 use ilDateTime;
 use ilDateTimeException;
 use LogicException;
-use srag\ActiveRecordConfig\Exception\ActiveRecordConfigException;
 use srag\DIC\DICTrait;
 
 /**
@@ -79,14 +78,11 @@ final class Repository
      * @param string $name
      *
      * @return mixed
-     *
-     * @throws ActiveRecordConfigException Invalid type $type!
-     * @throws ActiveRecordConfigException Invalid field $name!
      */
     public function getField(string $name)
     {
-        if (isset($this->getFields()[$name])) {
-            $field = $this->getFields()[$name];
+        if (isset($this->getFields_()[$name])) {
+            $field = $this->getFields_()[$name];
             if (!is_array($field)) {
                 $field = [$field];
             }
@@ -120,28 +116,23 @@ final class Repository
                     return $this->getJsonValue($name, $assoc, $default_value);
 
                 default:
-                    throw new ActiveRecordConfigException("Invalid type $type!", ActiveRecordConfigException::CODE_INVALID_FIELD);
+                    throw new LogicException("Invalid type $type!");
                     break;
             }
         }
 
-        throw new ActiveRecordConfigException("Invalid field $name!", ActiveRecordConfigException::CODE_INVALID_FIELD);
+        throw new LogicException("Invalid field $name!");
     }
 
 
     /**
-     * Get all values
-     *
-     * @return array [ [ "name" => value ], ... ]
-     *
-     * @throws ActiveRecordConfigException Invalid type $type!
-     * @throws ActiveRecordConfigException Invalid field $name!
+     * @return array
      */
-    public function getFields_() : array
+    public function getFields() : array
     {
         $values = [];
 
-        foreach ($this->getFields() as $name) {
+        foreach ($this->getFields_() as $name) {
             $values[$name] = $this->getField($name);
         }
 
@@ -152,7 +143,7 @@ final class Repository
     /**
      * @return array
      */
-    public function getFields() : array
+    protected function getFields_() : array
     {
         if (empty($this->fields)) {
             throw new LogicException("fields is empty - please call withFields earlier!");
@@ -185,8 +176,6 @@ final class Repository
 
 
     /**
-     * Remove a field
-     *
      * @param string $name Name
      */
     public function removeField(string $name)/*: void*/
@@ -200,14 +189,11 @@ final class Repository
     /**
      * @param string $name
      * @param mixed  $value
-     *
-     * @throws ActiveRecordConfigException Invalid type $type!
-     * @throws ActiveRecordConfigException Invalid field $name!
      */
     public function setField(string $name, $value)/*: void*/
     {
-        if (isset($this->getFields()[$name])) {
-            $field = $this->getFields()[$name];
+        if (isset($this->getFields_()[$name])) {
+            $field = $this->getFields_()[$name];
             if (!is_array($field)) {
                 $field = [$field];
             }
@@ -251,23 +237,18 @@ final class Repository
                     return;
 
                 default:
-                    throw new ActiveRecordConfigException("Invalid type $type!", ActiveRecordConfigException::CODE_INVALID_FIELD);
+                    throw new LogicException("Invalid type $type!");
                     break;
             }
         }
 
-        throw new ActiveRecordConfigException("Invalid field $name!", ActiveRecordConfigException::CODE_INVALID_FIELD);
+        throw new LogicException("Invalid field $name!");
     }
 
 
     /**
-     * Set all values
-     *
-     * @param array $fields        [ [ "name" => value ], ... ]
-     * @param bool  $remove_exists Delete all exists name before
-     *
-     * @throws ActiveRecordConfigException Invalid type $type!
-     * @throws ActiveRecordConfigException Invalid field $name!
+     * @param array $fields
+     * @param bool  $remove_exists
      */
     public function setFields(array $fields, bool $remove_exists = false)/*: void*/
     {

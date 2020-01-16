@@ -50,8 +50,38 @@ and not forget to add an uninstaller step in your plugin class too
 self::config()->dropTables();
 ```
 
-### More infos
-[Old readme - deprecated!!!](./doc/OldREADME.md)
+Fields are an array like
+```php
+[
+    Config::KEY_SOME => Config::TYPE_STRING
+];
+```
+
+You can define a default value, if the value is empty:
+```php
+[
+    Config::KEY_SOME => [Config::TYPE_STRING, Config::DEFAULT_SOME]
+]
+```
+
+If you use the JSON datatype, you can decide if you want assoc objects or not:
+```php
+[
+    Config::KEY_SOME => [Config::TYPE_JSON, Config::DEFAULT_SOME, true]
+]
+```
+
+It exists the follow datatypes:
+
+| Datatype       | PHP type   |
+| :------------- | :--------- |
+| TYPE_STRING    | string     |
+| TYPE_INTEGER   | integer    |
+| TYPE_DOUBLE    | double     |
+| TYPE_BOOLEAN   | bool       |
+| TYPE_TIMESTAMP | integer    |
+| TYPE_DATETIME  | ilDateTime |
+| TYPE_JSON      | mixed      |
 
 ### Requirements
 * ILIAS 5.3 or ILIAS 5.4
