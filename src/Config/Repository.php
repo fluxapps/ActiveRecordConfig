@@ -338,7 +338,7 @@ final class Repository
 
     /**
      * @param string     $name
-     * @param mixed|null $default_value
+     * @param mixed $default_value
      *
      * @return mixed
      */
@@ -372,11 +372,11 @@ final class Repository
 
     /**
      * @param string $name
-     * @param string $default_value
+     * @param mixed  $default_value
      *
      * @return string
      */
-    protected function getStringValue(string $name, string $default_value = "") : string
+    protected function getStringValue(string $name, $default_value = "") : string
     {
         return strval($this->getXValue($name, $default_value));
     }
@@ -384,7 +384,7 @@ final class Repository
 
     /**
      * @param string $name
-     * @param string $value
+     * @param mixed  $value
      */
     protected function setStringValue(string $name, $value)/*: void*/
     {
@@ -394,11 +394,11 @@ final class Repository
 
     /**
      * @param string $name
-     * @param int    $default_value
+     * @param mixed  $default_value
      *
      * @return int
      */
-    protected function getIntegerValue(string $name, int $default_value = 0) : int
+    protected function getIntegerValue(string $name, $default_value = 0) : int
     {
         return intval($this->getXValue($name, $default_value));
     }
@@ -406,7 +406,7 @@ final class Repository
 
     /**
      * @param string $name
-     * @param int    $value
+     * @param mixed  $value
      */
     protected function setIntegerValue(string $name, $value)/*: void*/
     {
@@ -416,11 +416,11 @@ final class Repository
 
     /**
      * @param string $name
-     * @param float  $default_value
+     * @param mixed  $default_value
      *
      * @return float
      */
-    protected function getFloatValue(string $name, float $default_value = 0.0) : float
+    protected function getFloatValue(string $name, $default_value = 0.0) : float
     {
         return floatval($this->getXValue($name, $default_value));
     }
@@ -428,7 +428,7 @@ final class Repository
 
     /**
      * @param string $name
-     * @param float  $value
+     * @param mixed  $value
      */
     protected function setFloatValue(string $name, $value)/*: void*/
     {
@@ -438,11 +438,11 @@ final class Repository
 
     /**
      * @param string $name
-     * @param bool   $default_value
+     * @param mixed  $default_value
      *
      * @return bool
      */
-    protected function getBooleanValue(string $name, bool $default_value = false) : bool
+    protected function getBooleanValue(string $name, $default_value = false) : bool
     {
         return boolval(filter_var($this->getXValue($name, $default_value), FILTER_VALIDATE_BOOLEAN));
     }
@@ -450,7 +450,7 @@ final class Repository
 
     /**
      * @param string $name
-     * @param bool   $value
+     * @param mixed  $value
      */
     protected function setBooleanValue(string $name, $value)/*: void*/
     {
@@ -535,7 +535,7 @@ final class Repository
     /**
      * @param string     $name
      * @param bool       $assoc
-     * @param mixed|null $default_value
+     * @param mixed $default_value
      *
      * @return mixed
      */

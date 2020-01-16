@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.18.1]
+- Fix
+
 ## [0.18.0]
 - Refactor, deprecated old `ActiveRecordConfig`
 - Min PHP 7.0
