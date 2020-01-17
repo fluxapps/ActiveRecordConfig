@@ -176,7 +176,7 @@ final class Repository
 
 
     /**
-     * @param string $name Name
+     * @param string $name
      */
     public function removeField(string $name)/*: void*/
     {
