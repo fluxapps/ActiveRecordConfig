@@ -68,7 +68,7 @@ final class Repository
     /**
      * @return Factory
      */
-    public function factory() : Factory
+    protected function factory() : Factory
     {
         return Factory::getInstance();
     }
