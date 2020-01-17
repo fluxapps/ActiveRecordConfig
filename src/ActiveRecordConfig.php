@@ -2,6 +2,9 @@
 
 namespace srag\ActiveRecordConfig;
 
+use arConnector;
+use srag\ActiveRecordConfig\Config\AbstractFactory;
+use srag\ActiveRecordConfig\Config\AbstractRepository;
 use srag\ActiveRecordConfig\Config\Config;
 use srag\ActiveRecordConfig\Exception\ActiveRecordConfigException;
 
@@ -12,9 +15,9 @@ use srag\ActiveRecordConfig\Exception\ActiveRecordConfigException;
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @deprecated Please use ConfigTrait instead
+ * @deprecated Please use repository instead
  */
-abstract class ActiveRecordConfig extends Config
+class ActiveRecordConfig extends Config
 {
 
     /**
@@ -29,28 +32,18 @@ abstract class ActiveRecordConfig extends Config
      * @var array
      *
      * @abstract
-     */
-    protected static $fields = [];
-    /**
-     * @var bool
-     */
-    protected static $init = false;
-
-
-    /**
-     * @inheritDoc
      *
      * @deprecated
      */
-    public static function getTableName() : string
+    protected static $fields = [];
+
+
+    /**
+     * @return ActiveRecordConfigRepository
+     */
+    protected static function config() : ActiveRecordConfigRepository
     {
-        if (!self::$init) {
-            self::$init = true;
-
-            self::config()->withTableName(static::TABLE_NAME)->withFields(static::$fields);
-        }
-
-        return parent::getTableName();
+        return ActiveRecordConfigRepository::getInstance(static::TABLE_NAME, static::$fields);
     }
 
 
@@ -81,9 +74,7 @@ abstract class ActiveRecordConfig extends Config
      */
     public static function getField(string $name)
     {
-        self::getTableName();
-
-        return self::config()->getField($name);
+        return self::config()->getValue($name);
     }
 
 
@@ -96,9 +87,7 @@ abstract class ActiveRecordConfig extends Config
      */
     public static function getFields() : array
     {
-        self::getTableName();
-
-        return self::config()->getFields();
+        return self::config()->getValues();
     }
 
 
@@ -111,9 +100,7 @@ abstract class ActiveRecordConfig extends Config
      */
     public static function removeField(string $name)/*: void*/
     {
-        self::getTableName();
-
-        self::config()->removeField($name);
+        self::config()->removeValue($name);
     }
 
 
@@ -125,9 +112,7 @@ abstract class ActiveRecordConfig extends Config
      */
     public static function setField(string $name, $value)/*: void*/
     {
-        self::getTableName();
-
-        self::config()->setField($name, $value);
+        self::config()->setValue($name, $value);
     }
 
 
@@ -141,8 +126,172 @@ abstract class ActiveRecordConfig extends Config
      */
     public static function setFields(array $fields, bool $remove_exists = false)/*: void*/
     {
-        self::getTableName();
+        self::config()->setValues($fields, $remove_exists);
+    }
 
-        self::config()->setFields($fields, $remove_exists);
+
+    /**
+     * ActiveRecordConfig constructor
+     *
+     * @param string|null      $primary_name_value
+     * @param arConnector|null $connector
+     *
+     * @deprecated
+     */
+    public function __construct(/*?string*/ $primary_name_value = null, /*?*/ arConnector $connector = null)
+    {
+        self::config();
+
+        parent::__construct($primary_name_value, $connector);
+    }
+}
+
+/**
+ * Class ActiveRecordConfigRepository
+ *
+ * @package    srag\ActiveRecordConfig
+ *
+ * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ *
+ * @deprecated Do not use - only used for be compatible with old version
+ */
+final class ActiveRecordConfigRepository extends AbstractRepository
+{
+
+    /**
+     * @var self
+     *
+     * @deprecated
+     */
+    protected static $instance = null;
+
+
+    /**
+     * @param string $table_name
+     * @param array  $fields
+     *
+     * @return self
+     *
+     * @deprecated
+     */
+    public static function getInstance(string $table_name, array $fields) : self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self($table_name, $fields);
+        }
+
+        return self::$instance;
+    }
+
+
+    /**
+     * @var string
+     *
+     * @deprecated
+     */
+    protected $table_name;
+    /**
+     * @var array
+     *
+     * @deprecated
+     */
+    protected $fields;
+
+
+    /**
+     * ActiveRecordConfigRepository constructor
+     *
+     * @param string $table_name
+     * @param array  $fields
+     *
+     * @deprecated
+     */
+    protected function __construct(string $table_name, array $fields)
+    {
+        $this->table_name = $table_name;
+        $this->fields = $fields;
+
+        parent::__construct();
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @return ActiveRecordConfigFactory
+     *
+     * @deprecated
+     */
+    public function factory() : AbstractFactory
+    {
+        return ActiveRecordConfigFactory::getInstance();
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @deprecated
+     */
+    protected function getTableName() : string
+    {
+        return $this->table_name;
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @deprecated
+     */
+    protected function getFields() : array
+    {
+        return $this->fields;
+    }
+}
+
+/**
+ * Class ActiveRecordConfigFactory
+ *
+ * @package    srag\ActiveRecordConfig
+ *
+ * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ *
+ * @deprecated Do not use - only used for be compatible with old version
+ */
+final class ActiveRecordConfigFactory extends AbstractFactory
+{
+
+    /**
+     * @var self
+     *
+     * @deprecated
+     */
+    protected static $instance = null;
+
+
+    /**
+     * @return self
+     *
+     * @deprecated
+     */
+    public static function getInstance() : self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+
+    /**
+     * ActiveRecordConfigFactory constructor
+     *
+     * @deprecated
+     */
+    private function __construct()
+    {
+        parent::__construct();
     }
 }
