@@ -8,51 +8,24 @@ use LogicException;
 use srag\DIC\DICTrait;
 
 /**
- * Class Repository
+ * Class AbstractRepository
  *
  * @package srag\ActiveRecordConfig\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-final class Repository
+abstract class AbstractRepository
 {
 
     use DICTrait;
-    /**
-     * @var self
-     */
-    protected static $instance = null;
 
 
     /**
-     * @return self
+     * AbstractRepository constructor
      */
-    public static function getInstance() : self
+    protected function __construct()
     {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-
-    /**
-     * @var string
-     */
-    protected $table_name = "";
-    /**
-     * @var array
-     */
-    protected $fields;
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
+        Config::setTableName($this->getTableName());
     }
 
 
@@ -66,23 +39,14 @@ final class Repository
 
 
     /**
-     * @return Factory
-     */
-    protected function factory() : Factory
-    {
-        return Factory::getInstance();
-    }
-
-
-    /**
      * @param string $name
      *
      * @return mixed
      */
-    public function getField(string $name)
+    public function getValue(string $name)
     {
-        if (isset($this->getFields_()[$name])) {
-            $field = $this->getFields_()[$name];
+        if (isset($this->getFields()[$name])) {
+            $field = $this->getFields()[$name];
             if (!is_array($field)) {
                 $field = [$field];
             }
@@ -128,41 +92,15 @@ final class Repository
     /**
      * @return array
      */
-    public function getFields() : array
+    public function getValues() : array
     {
         $values = [];
 
-        foreach ($this->getFields_() as $name) {
-            $values[$name] = $this->getField($name);
+        foreach ($this->getFields() as $name) {
+            $values[$name] = $this->getValue($name);
         }
 
         return $values;
-    }
-
-
-    /**
-     * @return array
-     */
-    protected function getFields_() : array
-    {
-        if (empty($this->fields)) {
-            throw new LogicException("fields is empty - please call withFields earlier!");
-        }
-
-        return $this->fields;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getTableName() : string
-    {
-        if (empty($this->table_name)) {
-            throw new LogicException("table name is empty - please call withTableName earlier!");
-        }
-
-        return $this->table_name;
     }
 
 
@@ -178,7 +116,7 @@ final class Repository
     /**
      * @param string $name
      */
-    public function removeField(string $name)/*: void*/
+    public function removeValue(string $name)/*: void*/
     {
         $config = $this->getConfig($name, false);
 
@@ -190,10 +128,10 @@ final class Repository
      * @param string $name
      * @param mixed  $value
      */
-    public function setField(string $name, $value)/*: void*/
+    public function setValue(string $name, $value)/*: void*/
     {
-        if (isset($this->getFields_()[$name])) {
-            $field = $this->getFields_()[$name];
+        if (isset($this->getFields()[$name])) {
+            $field = $this->getFields()[$name];
             if (!is_array($field)) {
                 $field = [$field];
             }
@@ -247,44 +185,18 @@ final class Repository
 
 
     /**
-     * @param array $fields
+     * @param array $values
      * @param bool  $remove_exists
      */
-    public function setFields(array $fields, bool $remove_exists = false)/*: void*/
+    public function setValues(array $values, bool $remove_exists = false)/*: void*/
     {
         if ($remove_exists) {
             Config::truncateDB();
         }
 
-        foreach ($fields as $name => $value) {
-            $this->setField($name, $value);
+        foreach ($values as $name => $value) {
+            $this->setValue($name, $value);
         }
-    }
-
-
-    /**
-     * @param array $fields
-     *
-     * @return self
-     */
-    public function withFields(array $fields) : self
-    {
-        $this->fields = $fields;
-
-        return $this;
-    }
-
-
-    /**
-     * @param string $table_name
-     *
-     * @return self
-     */
-    public function withTableName(string $table_name) : self
-    {
-        $this->table_name = $table_name;
-
-        return $this;
     }
 
 
@@ -573,4 +485,22 @@ final class Repository
     {
         $this->setXValue($name, null);
     }
+
+
+    /**
+     * @return AbstractFactory
+     */
+    public abstract function factory() : AbstractFactory;
+
+
+    /**
+     * @return string
+     */
+    protected abstract function getTableName() : string;
+
+
+    /**
+     * @return array
+     */
+    protected abstract function getFields() : array;
 }

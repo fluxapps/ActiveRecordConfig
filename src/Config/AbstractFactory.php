@@ -5,39 +5,22 @@ namespace srag\ActiveRecordConfig\Config;
 use srag\DIC\DICTrait;
 
 /**
- * Class Factory
+ * Class AbstractFactory
  *
  * @package srag\ActiveRecordConfig\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-final class Factory
+abstract class AbstractFactory
 {
 
     use DICTrait;
-    /**
-     * @var self
-     */
-    protected static $instance = null;
 
 
     /**
-     * @return self
+     * AbstractFactory constructor
      */
-    public static function getInstance() : self
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
+    protected function __construct()
     {
 
     }
