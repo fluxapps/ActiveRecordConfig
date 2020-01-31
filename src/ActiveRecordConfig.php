@@ -40,6 +40,8 @@ class ActiveRecordConfig extends Config
 
     /**
      * @return ActiveRecordConfigRepository
+     *
+     * @deprecated
      */
     protected static function config() : ActiveRecordConfigRepository
     {
