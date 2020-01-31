@@ -290,7 +290,7 @@ final class ActiveRecordConfigFactory extends AbstractFactory
      *
      * @deprecated
      */
-    private function __construct()
+    protected function __construct()
     {
         parent::__construct();
     }
