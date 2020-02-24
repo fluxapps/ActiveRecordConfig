@@ -29,7 +29,7 @@ final class Repository extends AbstractRepository
 {
     ...
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 
@@ -95,7 +95,7 @@ final class Factory extends AbstractFactory
 {
     ...
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 
