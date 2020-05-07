@@ -18,6 +18,7 @@ class Config extends ActiveRecord
 {
 
     use DICTrait;
+
     /**
      * @var string
      */
