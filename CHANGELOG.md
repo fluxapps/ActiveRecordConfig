@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.20.0]
+- Generate readme
+
 ## [0.19.8]
 - Fix
 
