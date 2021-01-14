@@ -11,9 +11,9 @@
   },
   "type": "library",
   "keywords": [
-    "ILIAS",
-    "ActiveRecord",
-    "Config"
+    "activerecord",
+    "config",
+    "ilias"
   ],
   "homepage": "https://github.com/studer-raimann/ActiveRecordConfig",
   "license": "GPL-3.0-only",
