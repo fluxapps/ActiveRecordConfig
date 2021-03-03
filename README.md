@@ -195,5 +195,6 @@ It exists the follow datatypes:
 
 ## Adjustment suggestions
 
-* External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_ACCONF
-* Adjustment suggestions by pull requests via github
+You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_ACCONF
+
+There is no guarantee this can be fixed or implemented
