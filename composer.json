@@ -50,6 +50,9 @@
   "scripts": {
     "generate-plugin-readme": [
       "srag\\GeneratePluginInfosHelper\\GeneratePluginReadme::generatePluginReadme"
+    ],
+    "update-version": [
+      "srag\\GeneratePluginInfosHelper\\UpdateVersion::updateVersion"
     ]
   }
 }
