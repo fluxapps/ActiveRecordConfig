@@ -192,9 +192,3 @@ It exists the follow datatypes:
 
 * ILIAS 5.4.0 - 6.999
 * PHP >=7.0
-
-## Adjustment suggestions
-
-You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_ACCONF
-
-There is no guarantee this can be fixed or implemented
