@@ -13,8 +13,6 @@ use srag\ActiveRecordConfig\Exception\ActiveRecordConfigException;
  *
  * @package    srag\ActiveRecordConfig
  *
- * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @deprecated Please use AbstractRepository instead
  */
 class ActiveRecordConfig extends Config
@@ -153,8 +151,6 @@ class ActiveRecordConfig extends Config
  *
  * @package    srag\ActiveRecordConfig
  *
- * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @deprecated Do not use - only used for be compatible with old version
  */
 final class ActiveRecordConfigFactory extends AbstractFactory
@@ -198,8 +194,6 @@ final class ActiveRecordConfigFactory extends AbstractFactory
  * Class ActiveRecordConfigRepository
  *
  * @package    srag\ActiveRecordConfig
- *
- * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
  * @deprecated Do not use - only used for be compatible with old version
  */

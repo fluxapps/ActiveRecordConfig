@@ -1,7 +1,7 @@
 {
   "name": "srag/activerecordconfig",
   "description": "Simple ActiveRecord config for ILIAS plugins",
-  "version": "0.20.4",
+  "version": "0.20.5",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
@@ -16,13 +16,13 @@
     "config",
     "ilias"
   ],
-  "homepage": "https://github.com/fluxfw/ActiveRecordConfig",
+  "homepage": "https://github.com/fluxapps/ActiveRecordConfig",
   "license": "GPL-3.0-only",
   "authors": [
     {
-      "name": "studer + raimann ag - Team Custom 1",
-      "email": "support-custom1@studer-raimann.ch",
-      "homepage": "https://studer-raimann.ch",
+      "name": "fluxlabs",
+      "email": "support@fluxlabs.ch",
+      "homepage": "https://fluxlabs.ch",
       "role": "Developer"
     }
   ],
