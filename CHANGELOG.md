@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.20.6]
+- Test
+
 ## [0.20.5]
 - Update urls
 
