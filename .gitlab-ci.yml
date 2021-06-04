@@ -1,2 +1,2 @@
 include:
-  - https://auto-version-tag-ci.fluxlabs.ch/auto_version_tag_ci.yml
+  - https://utils.fluxpublisher.ch/FluxPublishUtils.yml
