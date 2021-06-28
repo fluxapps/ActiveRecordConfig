@@ -1,2 +1,7 @@
-include:
-  - https://utils.fluxpublisher.ch/FluxPublishUtils.yml
+FluxPublishUtils:
+  stage: build
+  image: docker-registry.fluxpublisher.ch/flux-publish-utils:latest
+  script:
+    - "false"
+  only:
+    - /^master$/
