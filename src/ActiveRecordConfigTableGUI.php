@@ -56,7 +56,7 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
      *
      * @deprecated
      */
-    protected function initFilterFields()/*: void*/
+    protected function initFilterFields() : void
     {
         $this->setFilterCommand(ActiveRecordConfigGUI::CMD_APPLY_FILTER . "_" . $this->tab_id);
         $this->setResetCommand(ActiveRecordConfigGUI::CMD_RESET_FILTER . "_" . $this->tab_id);
@@ -68,7 +68,7 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
      *
      * @deprecated
      */
-    protected function initId()/*: void*/
+    protected function initId() : void
     {
 
     }
@@ -79,7 +79,7 @@ abstract class ActiveRecordConfigTableGUI extends TableGUI
      *
      * @deprecated
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle() : void
     {
         $this->setTitle($this->txt($this->tab_id));
     }

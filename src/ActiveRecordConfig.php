@@ -86,7 +86,7 @@ class ActiveRecordConfig extends Config
      *
      * @deprecated
      */
-    public static function setFields(array $fields, bool $remove_exists = false)/*: void*/
+    public static function setFields(array $fields, bool $remove_exists = false) : void
     {
         self::config()->setValues($fields, $remove_exists);
     }
@@ -99,7 +99,7 @@ class ActiveRecordConfig extends Config
      *
      * @deprecated
      */
-    public static function removeField(string $name)/*: void*/
+    public static function removeField(string $name) : void
     {
         self::config()->removeValue($name);
     }
@@ -111,7 +111,7 @@ class ActiveRecordConfig extends Config
      *
      * @deprecated
      */
-    public static function setField(string $name, $value)/*: void*/
+    public static function setField(string $name, $value) : void
     {
         self::config()->setValue($name, $value);
     }

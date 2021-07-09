@@ -49,7 +49,7 @@ abstract class ActiveRecordConfigFormGUI extends ConfigPropertyFormGUI
      *
      * @deprecated
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands() : void
     {
         $this->addCommandButton(ActiveRecordConfigGUI::CMD_UPDATE_CONFIGURE . "_" . $this->tab_id, $this->txt("save"));
     }
@@ -60,7 +60,7 @@ abstract class ActiveRecordConfigFormGUI extends ConfigPropertyFormGUI
      *
      * @deprecated
      */
-    protected function initId()/*: void*/
+    protected function initId() : void
     {
 
     }
@@ -71,7 +71,7 @@ abstract class ActiveRecordConfigFormGUI extends ConfigPropertyFormGUI
      *
      * @deprecated
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle() : void
     {
         $this->setTitle($this->txt($this->tab_id));
     }

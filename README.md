@@ -189,4 +189,4 @@ It exists the follow datatypes:
 ## Requirements
 
 * ILIAS 6.0 - 6.999
-* PHP >=7.0
+* PHP >=7.2

@@ -95,7 +95,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    public final function executeCommand()/*: void*/
+    public final function executeCommand() : void
     {
         parent::executeCommand();
     }
@@ -124,7 +124,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    public /*final*/ function performCommand(/*string*/ $cmd)/*: void*/
+    public /*final*/ function performCommand(/*string*/ $cmd) : void
     {
         $this->setTabs();
 
@@ -213,7 +213,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    public final function redirectToTab(string $tab_id)/*: void*/
+    public final function redirectToTab(string $tab_id) : void
     {
         self::dic()->ctrl()->redirect($this, $this->getCmdForTab($tab_id));
     }
@@ -225,7 +225,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    protected function addTab(string $tab_id, string $cmd)/*: void*/
+    protected function addTab(string $tab_id, string $cmd) : void
     {
         self::dic()->tabs()->addTab($tab_id, $this->txt($tab_id), self::dic()->ctrl()->getLinkTarget($this, $cmd));
     }
@@ -253,7 +253,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    private final function applyFilter(string $tab_id)/*: void*/
+    private final function applyFilter(string $tab_id) : void
     {
         $table = $this->getConfigurationTable(static::$tabs[$tab_id], self::CMD_APPLY_FILTER . "_" . $tab_id, $tab_id);
 
@@ -275,7 +275,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    private final function configure(string $tab_id)/*: void*/
+    private final function configure(string $tab_id) : void
     {
         self::dic()->tabs()->activateTab($tab_id);
 
@@ -393,7 +393,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    private final function resetFilter(string $tab_id)/*: void*/
+    private final function resetFilter(string $tab_id) : void
     {
         $table = $this->getConfigurationTable(static::$tabs[$tab_id], self::CMD_RESET_FILTER . "_" . $tab_id, $tab_id);
 
@@ -411,7 +411,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    private final function setTabs()/*: void*/
+    private final function setTabs() : void
     {
         foreach (static::$tabs as $tab_id => $config_gui_class_name) {
             if (in_array($config_gui_class_name, static::$custom_commands)) {
@@ -434,7 +434,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    private final function updateConfigure(string $tab_id)/*: void*/
+    private final function updateConfigure(string $tab_id) : void
     {
         self::dic()->tabs()->activateTab($tab_id);
 
