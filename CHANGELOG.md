@@ -4,6 +4,12 @@
 - ILIAS 7 support
 - Remove ILIAS 5.4 support
 - Min PHP 7.2
+- Remove deprecated ActiveRecordConfig
+- Remove deprecated ActiveRecordConfigException
+- Remove deprecated ActiveRecordConfigFormGUI
+- Remove deprecated ActiveRecordConfigGUI
+- Remove deprecated ActiveRecordConfigTableGUI
+- Remove deprecated ActiveRecordObjectFormGUI
 
 ## [0.20.7]
 - Change utils url
