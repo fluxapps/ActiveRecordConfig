@@ -1,7 +1,15 @@
-FluxPublishUtils:
-  stage: build
-  image: docker-registry.fluxpublisher.ch/flux-publish-utils:latest
-  script:
-    - "false"
-  only:
-    - /^main$/
+stages:
+    - publish-utils
+
+publish-utils:
+    stage: publish-utils
+    image: php:cli-alpine
+    script:
+        - (if [ ! -d flux-publish-utils ]; then mkdir -p flux-publish-utils && cd flux-publish-utils && wget -O - https://github.com/fluxfw/flux-publish-utils/releases/download/v2022-07-12-1/flux-publish-utils-v2022-07-12-1-build.tar.gz | tar -xz --strip-components=1; fi)
+        - flux-publish-utils/bin/publish-utils.php
+    cache:
+        key: publish-utils
+        paths:
+            - flux-publish-utils
+    only:
+        - main
